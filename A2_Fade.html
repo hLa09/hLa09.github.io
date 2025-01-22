@@ -4,15 +4,239 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 
-    <title>Example Student's HCDE 439 Physical Computing Page!</title>
+    <title>Ha La's HCDE 439 Physical Computing Page!</title>
 
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1>Example Student's Assignment 2!</h1>
-    <div class="header">
-      <img src="red-panda.jpg" />
-      <p>Here is all the documentation for assignment 2!</p>
+    <h1 class="title">Assignment 2: Fading with colors!</h1>
+
+    <div class="block">
+      <figure>
+        <img src="A2_Circuit_sideview.jpg" width="300" height="300"/>
+        <figcaption> Fig 1: This image is show in side-view of what the circuit board for the Fading project. The circuit board has a clear RGB LED, with three resistors, and four wires connecting to Arduino. To the right of the LED is a button, with one resistor and three wires connect to the Arduino from the board.</figcaption>
+      </figure>
+      <div id="intro">
+        <h3> Introduction: </h3>
+        <p>What did I do for assignment 2? Make them Fading in colors! <br> <br>
+        For this assignment the requirement was:</p>
+        <ul>
+          <li>to have severals LEDs(at least 3),</li>
+          <ul>
+            <li>though the RGB LED is consider 3.</li>
+          </ul>
+          <li>A button, tilt switch, or a self created switch.</li>
+          <li>In Arduino code:</li>
+          <ul>
+            <li>A for-loop - function</li>
+            <li>digitalWrite() function</li>
+            <li>digitalRead() function</li>
+            <li>analogWrite() function.</li>
+          </ul>
+        </ul>
+        <p> <br>Beside the requirements, the name of the project makes sense itself! Using the LEDs and the button to perform some short of fading effects, and limit the current flowing though the LEDs using resistors - these resistors must be carefully calculated, and use appropriate resistors that corresponding to the calculation. Not just the LEDs but the button also need to limit the current flowing by using resistor, with explaination why it necessary for the value of the resistor used. Other than that, the circuit board need power through connecting to Arduino and computer. Using the Arduino IDE to code the function in which needed to the perform the effect. For the Arduino part, I use all the function above: digitalWrite(), digitalRead(), analogWrite(), and for-loop to assist in the coding part. <br><br>
+        <strong><big>Let go in more details belows!</big></strong></p>
+      </div>
     </div>
+
+    <div class="row-column">
+      <div>
+        <h3>Schematic: </h3>
+        <p>The following is the schematic of the Fading project which I used: I show them in both physical circuit board via bird-eye-view, and in sketch version. This is what the board look like to allow the function of the Arduino code to run properly. I have one button and one RGB LED which consists of Red, Green, and Blue LEDs. The reason I chose this specific RGB LED is to allow me to perform a color that a single LED couldn't display. As I apply the knowledge I learn in the class's activity, by using the RGB LED to showcase colors combination such as yellow, or pink with fading effects. <br> <br>
+        When compare to the physical ciruit, we can see each red wire connect to a pin so the power is drawing individually rather than connected. The red wires on the LEDs side connect to the resistors (each connect individually as well). Then each resistor connect to the LED, and the LED is connect to the ground (in black wire). While on the button side we can see that the button has four legs, and one leg is directly connect to power (5 Volt) and the other leg is connect to a pin, and a resistor. The resistor is also connect to the ground wire (black).
+      </p>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="A2_Circuit_topview.jpg" width="auto" height="300"/>
+            <figcaption> Fig2: Showing the circuit boad in bird-eye-view. This image is representing the sketch schematic (image to the right) in  physical circuit board form.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="A2_Sketch.jpg" width="auto" height="300"/>
+            <figcaption> Fig 3: This image show the Schemaitc of the circuit board via sketching.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div>
+        <h4 id="row-content">Calculation: </h4>
+        <p id="row-content">Beside the LEDs and the button, there is a component called the resistors, here is the appropriate resistor value for each color LED was calculated as follow:</p>
+        <ul>
+          <li>Red LED:</li>
+          <ul>
+            <li>knowns: 5 Volt, desire LED at 20mA current, Voltage drop (Red) = 1.8V.</li>
+            <li>Formula: V = I(Amperes) * Resistance (Ohms)</li>
+            <li> 5V - 1.8V = 20mA * R</li>
+            <li> 3.2V = 20mA * R</li>
+            <li> R = 3.2 / 0.02 = 160 Ohms</li>
+          </ul>
+          <li>Green LED:</li>
+          <ul>
+            <li>knowns: 5 Volt, desire LED at 20mA current, Voltage drop (Green) = 1.8V.</li>
+            <li>Formula: V = I(Amperes) * Resistance (Ohms)</li>
+            <li> 5V - 1.8V = 20mA * R</li>
+            <li> 3.2V = 20mA * R</li>
+            <li> R = 3.2 / 0.02 = 160 Ohms</li>
+          </ul>
+          <li>Blue LED:</li>
+          <ul>
+            <li>knowns: 5 Volt, desire LED at 20mA current, Voltage drop (Blue) = 3.3V.</li>
+            <li>Formula: V = I(Amperes) * Resistance (Ohms)</li>
+            <li> 5V - 1.8V = 20mA * R</li>
+            <li> 1.7V = 20mA * R</li>
+            <li> R = 1.7 / 0.02 = 85 Ohms</li>
+          </ul>
+        </ul>
+        <p> <br> For all of the LEDs: Red, Green, and Blue require a resistor of around 85 to 160 Ohms, in which the closest resistor in my kit is resistor of 220 Ohms. As this resistor (220 Ohms) provide the closes resistances that each LEDs need, which I will have three of the 220 Ohms resistors on my circuit board to limit the currents Amperes passing through.<br><br>
+        There will be a 10K resistor for the button, as the project will require me to use the button to perform the fading LEDs. This resistor is necessary for the button because it can help regulating the current flow when the button need to pull up from 0 Voltage to a 5 Voltage.<br> <br> </p>
+      </div>
+      <div id="column-split">
+        <h4 id="row-content"> Code: </h4>
+        <p id="row-content"> As mentioned there is a require function from the Arduino to tell what the LEDs do, how the button will be read, and how the fading effects comes in to play. The following is a snippet of the Arduino code: <br> </p>
+        <pre id="para-end">
+          // Variables will not be change:
+          // Declaring ledPin color connect to which pin in the Arduino
+          // LED represent for Red is connect to pin 11
+          const int ledPinR = 11;
+          // LED represent for Green is connect to pin 10
+          const int ledPinG = 10;
+          // LED represent for Blue is connect to pin 9
+          const int ledPinB = 9;
+          // the pin that the pushbutton is attached to is pin 2
+          const int buttonPin = 2;
+
+          // Variables will be change:
+          // initialize counter for the number of button presses
+          int buttonPushCounter = 0;
+          // initialize the current state of the button
+          int buttonState = 0;
+          // initialize the previous state of the button
+          int lastState = 0;
+
+          // This act like the motor of the code, by running the code in order
+          void setup() {
+            // Set pin for LED red as output
+            pinMode(ledPinR, OUTPUT);
+            // Set pin for LED green as output
+            pinMode(ledPinG, OUTPUT);
+            // Set pin for LED blue as output
+            pinMode(ledPinB, OUTPUT);
+            // Initialize the button pin as a input:
+            pinMode(buttonPin, INPUT);
+            // Initialize serial communication:
+            Serial.begin(9600);
+          }
+
+          // This allow the following behavior to loop until changes
+          void loop() {
+            // The buttonState will depend by reading the pushbutton pin input:
+            buttonState = digitalRead(buttonPin);
+
+            // Checking to see if the button is same as the prior state
+            if (buttonState != lastState){
+              // Allow to pass when the button is on (HIGH)
+              if (buttonState == HIGH) {
+                // When the buttonState is HIGH, indicate the button to change from off to on:
+                // Counts the button push to indicate whether button is on/off
+                buttonPushCounter++;
+                // Serial communication on when the buttonState is HIGH
+                Serial.println("on");
+                // Serial communication the number of button has pushes
+                Serial.print("number of button pushes: ");
+                // serial communication check on push counter to calculated
+                Serial.println(buttonPushCounter);
+              }
+              // when the button does not pass the first check this will run
+              else {
+                // When the buttonState is LOW, indicate the button to change from on to off using serial communication.
+                Serial.println("off");
+              }
+              // Delay 50 milliseconds to avoid bouncing
+              delay(50);
+            }
+            // Save the current buttonState as the last state, for next time
+            lastState = buttonState;
+
+            // Turns on the LED every two button pushes by checking the modulo
+            // of the push counter. The modulo will provide the remainder of the
+            // division of the two numbers:
+            if (buttonPushCounter % 2 == 0) {
+              // When modulo pass the quotient equal to 0, the fade effect
+              // begin. The fade will gain color from min 0 to max 255 with
+              // with increments of 20.
+              for (int fadeValue = 0; fadeValue <= 255; fadeValue += 20) {
+                // Sets the value of the LedPinR (range from 0 to 255):
+                analogWrite(ledPinR, fadeValue);
+                // Sets the value of the LedPinG (range from 0 to 255):
+                analogWrite(ledPinG, fadeValue);
+                // wait for 100 milliseconds to see the dimming effect
+              delay(100);
+              }
+  	          // After the first loop finish. The fade will lose color from
+              // max 255 to min 0, with decrements of 20.
+              for (int fadeValue = 255; fadeValue >= 0; fadeValue -= 20) {
+                // Sets the value of the LedPinG (range from 255 to 0):
+                analogWrite(ledPinG, fadeValue);
+                // Sets the value of the LedPinB (range from 255 to 0):
+                analogWrite(ledPinB, fadeValue);
+                // Wait for 100 milliseconds to see the dimming effect
+                delay(100);
+              }
+              // Wait for 50 milliseconds to see LEDs color turn off
+              // before looping again
+              delay(50);
+            }
+            // When push counter modulo return not equal to zero, this run:
+            else {
+              // Turn off ledPinR, by setting to LOW
+              digitalWrite(ledPinR, LOW);
+              // Turn off ledPinG, by setting to LOW
+              digitalWrite(ledPinG, LOW);
+              // Turn off ledPinB, by setting to LOW
+              digitalWrite(ledPinB, LOW);
+            }
+          }
+        </pre>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div class="column">
+        <div>
+          <figure>
+            <h4>Operation: </h4>
+            <img src="A2_Operation.gif" width="auto" height="300"/>
+            <figcaption>This is an GIF showing the circuit breadboad in operation mode. A short replay clip of what the circuit does. This circuit was built using Arduino, breadboad, LEDs, resistors, and push button from our kit.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <h4>Voltage Chart</h4>
+          <figure>
+          <img src="A2_Graph.jpg" width="auto" height="300"/>
+          <figcaption>The image is showing the chart in x-axis is time and the y-axis is voltage. With three lines in differents colors representing the voltage across the LED with analogWrite(led, 64); analogWrite(led, 128); and analogWrite(led, 255). </figcaption>
+          </figure>
+        </div>
+      </div>
+      <div>
+        <p> <br> The function of the button is to turn off the LEDs when its in operation state. The button will also turn on the LEDs, when the LEDs is in off state. As you can see the LEDs is in operation state at first, and once I push the button (that add up to the count when modulo 2 is no equal 0) its turn off. Then turn back on again when I push on the button. The LEDs function not just light up, but in fact is fading from one color to the next. In this case I set the color from bright yellow fading to white and change from bright white to gainning color to a darker pink/red. <br> <br>
+        Although it look quite short and simple, but to perform this I had to use multiple example code from the Arduino IDE: StateChangeDetection code example, and Fading coding example. By manipulate the two code, I was able to have the function above. It was quite trials and errors with the calculation of the push button, eventually I got the gist of it by experimenting the button. When I push the button and counts the number I am at and for every two push it counts one, and once the count gets modulo to 2 and equals to zero the LEDs will turn on, and the LEDs will turn off if not equal to zero.</p>
+        <p> <br> <strong> Additional Question: </strong> <br> <br>
+        Given the schematic, circuit, and firware, assuming the only thing that draws current is your LEDs, how long would your circuit run if powered by a 1200mAh Battery? <br>
+        With the 1200mAh battery that run on 5 Volt, and draw continously 20mA:
+      </p>
+      <ul>
+        <li>Battery Life (h) = Maximum battery (mAh) / current flow (mA)</li>
+        <li>h = 1200 mAh / 20 mA</li>
+        <li>h = 60</li>
+      </ul>
+      <p> Based on the calculation, I will say 60 hours long.</p>
+      </div>
+    </div>
+
   </body>
 </html>
