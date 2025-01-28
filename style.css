@@ -149,6 +149,7 @@ pre {
   grid-template-columns: 2fr 2fr;
   gap: 5px;
   margin-top: 1em;
+  /* align-items: center; */
 }
 
 #row-content {
@@ -168,6 +169,18 @@ pre {
   grid-template-rows: auto auto;
   gap: 3px;
   margin-top: 1em;
+}
+
+.row {
+  display: grid;
+  grid-template-rows: auto;
+  gap: 3px;
+  margin-top: 1em;
+}
+
+.row img {
+  margin-top: 1em;
+  align-items: center;
 }
 
 /* #column-split { */

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <title>Ha La's HCDE 439 Physical Computing Page!</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1 class="title">Assignment 3: Input-Ouput: Color Sensor!</h1>
+
+    <div class="block">
+      <figure>
+        <img src="A3_Circuit_sideview.jpg" width="300" height="300"/>
+        <figcaption> Fig 1: This image is show in side-view of what the circuit board for the Input-Output project. The circuit board has three LEDs, with three resistors, and wires connecting to Arduino. To the right of the LED is a Photoresistor, with one resistor and wires connect to the Arduino from the board.</figcaption>
+      </figure>
+      <div id="intro">
+        <h3> Introduction: </h3>
+        <p>What is this assignment 3? Sensoring with color changing! <br> <br>
+        For this assignment the requirement was:</p>
+        <ul>
+          <li>to have severals LEDs,</li>
+          <ul>
+            <li>though the RGB LED is consider 3.</li>
+          </ul>
+          <li>Code that uses a sensor in a voltage divider to cahnge the state of an output device.</li>
+          <ul>
+            <li>either the photoresistor or the thermistor</li>
+          </ul>
+          <li>In Arduino code:</li>
+          <ul>
+            <li> if - statement</li>
+            <li>map() function</li>
+            <li>analogRead() function</li>
+            <li>analogWrite() function.</li>
+          </ul>
+        </ul>
+        <p> <br>Beside the requirements, the name of the project makes sense itself! Using the LEDs and a sensor, in this case I use a Photoresistor to perform some short of sensoring, and limit the current flowing though the LEDs using resistors - these resistors must be carefully calculated, and use appropriate resistors that corresponding to the calculation. Not just the LEDs but the Photoresistor also need to limit the current flowing by using resistor, with explaination why it necessary for the value of the resistor used. Other than that, the circuit board need power through connecting to Arduino and computer. Using the Arduino IDE to code the function in which needed to the perform the effect. For the Arduino part, I use all the function above: digitalWrite(), analogRead(), analogWrite(), map() function, Serial print and if-statement to assist in the coding part. <br><br>
+        <strong><big>Let go in more details belows!</big></strong></p>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div>
+        <h3>Schematic: </h3>
+        <p>The following is the schematic of the Input Output project which I used: I show them both in physical circuit board via bird-eye-view, and in sketch version. This is what the board look like to allow the function of the Arduino code to run properly. I have one Photoresistor and three LEDs in red, yellow, and green. Resemble a heat detector, the closer you get to the Photoresistor it will tell you warning in colors. If you are in safe distance (as in far away from the Photoresistor) it will display in green, if you near the Photoresistor but not too closed then the light will indicate in yellow. While if you are too close from the safe distance the LED will switch to red, as warning. I chose these LEDs as they symbolize safe distances. <br> <br>
+        When comparing to the physical circuit, we can see each black wire is connected directly to the LEDs, though one black wire is connect to the resistor before connect to the Photoresistor; these wires are consider as ground wires. Other then the black wires we have resistor connects to the LEDs: red, yellow, and green. This time I chose to use different color wires to help me distinct the pin without having to forget what it is. I have the red wire for the red LED and the Photoresistor, the white for the yellow LED, and the blue wire for the green LED. The color differents does not mean that each does different things, they all represent the power wires for the LEDs.
+      </p>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="A3_Circuit_topview.jpg" width="auto" height="300"/>
+            <figcaption> Fig2: Showing the circuit boad in bird-eye-view. This image is representing the sketch schematic (image to the right) in  physical circuit board form.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="A3_Sketch.jpg" width="auto" height="300"/>
+            <figcaption> Fig 3: This image show the Schemaitc of the circuit board via sketching.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div>
+        <h4 id="row-content">Calculation: </h4>
+        <p id="row-content">Beside the LEDs and the Photoresistor, there is a component called the resistors, here is the appropriate resistor value for each color LED was calculated as follow:</p>
+        <ul>
+          <li>Red LED:</li>
+          <ul>
+            <li>knowns: 5 Volt, desire LED at 20mA current, Voltage drop (Red) = 1.8V.</li>
+            <li>Formula: V = I(Amperes) * Resistance (Ohms)</li>
+            <li> 5V - 1.8V = 20mA * R</li>
+            <li> 3.2V = 20mA * R</li>
+            <li> R = 3.2 / 0.02 = 160 Ohms</li>
+          </ul>
+          <li>Green LED:</li>
+          <ul>
+            <li>knowns: 5 Volt, desire LED at 20mA current, Voltage drop (Green) = 1.8V.</li>
+            <li>Formula: V = I(Amperes) * Resistance (Ohms)</li>
+            <li> 5V - 1.8V = 20mA * R</li>
+            <li> 3.2V = 20mA * R</li>
+            <li> R = 3.2 / 0.02 = 160 Ohms</li>
+          </ul>
+          <li>Yellow LED:</li>
+          <ul>
+            <li>knowns: 5 Volt, desire LED at 20mA current, Voltage drop (Yellow) = 1.8V.</li>
+            <li>Formula: V = I(Amperes) * Resistance (Ohms)</li>
+            <li> 5V - 1.8V = 20mA * R</li>
+            <li> 3.2V = 20mA * R</li>
+            <li> R = 3.2 / 0.02 = 160 Ohms</li>
+          </ul>
+        </ul>
+        <p> <br> For all of the LEDs: Red, Green, and Yellow require a resistor of around 160 Ohms, in which the closest resistor in my kit is resistor of 220 Ohms. As this resistor (220 Ohms) provide the closes resistances that each LEDs need, which I will have three of the 220 Ohms resistors on my circuit board to limit the currents Amperes passing through.<br><br>
+        There will be a 10K resistor for the Photoresistor, as the project will require me to use the Photoresistor to perform the sensoring with LEDs. This resistor is necessary for the Photoresistor because it can help regulating the current flow when the Photoresistor is power to a 5 Voltage.<br> <br> </p>
+      </div>
+      <div id="column-split">
+        <h4 id="row-content"> Code: </h4>
+        <p id="row-content"> As mentioned there is a require function from the Arduino to tell what the LEDs do, how the Photoresistor will behave, and how the sensoring effects comes in to play. The following is a snippet of the Arduino code: <br> </p>
+        <pre id="para-end">
+          // Variables will not be change:
+          // Declaring ledPin color connect to which pin in the Arduino
+          // LED represent for Red is connect to pin 12
+          const int ledPinR = 12;
+          // LED represent for Yellow is connect to pin 8
+          const int ledPinY = 8;
+          // LED represent for Green is connect to pin 4
+          const int ledPinG = 4;
+          // The pin that the sensor pin is attached to is pin A0
+          const int port = A0;
+
+          // Variables will be change:
+          // This is where the sensor value will be stored
+          int sensorVal = 0;
+          // This is where the sensor minimum value stored
+          // Initial starting at 1023
+          int sensorMin = 1023;
+          // This is where the sensor maximum value stored
+          // Initial starting at 0
+          int sensorMax = 0;
+          // Initialize for color to be print out in string format
+          String color = "";
+
+          // This act like the motor of the code, by running the code in order
+          void setup() {
+            // Initialize the data rate for serial communication
+            Serial.begin(9600);
+            // This prompt for the Red LED pin output
+            pinMode(ledPinR, OUTPUT);
+            // This prompt for the Yellow LED pin output
+            pinMode(ledPinY, OUTPUT);
+            // This prompt for the Green LED pin output
+            pinMode(ledPinG, OUTPUT);
+            // This help initialize the pin to begin testing for the
+            // Photoresistor to sensor for the sensor minimum and maximum value.
+            // This prompt the Red LED to be on
+            digitalWrite(ledPinR, HIGH);
+            // This prompt the Yellow LED to be on
+            digitalWrite(ledPinY, HIGH);
+            // This prompt the Green LED to be on
+            digitalWrite(ledPinG, HIGH);
+
+            // Run the sensor for the first five seconds to determine the value
+            // of the sensor. This help limit the sensor value in specific range
+            while (millis() < 5000) {
+              // Set sensor value to the read value get from the analog pin
+              sensorVal = analogRead(port);
+              // Check the sensor value is greater than
+              // the declared sensor max value.
+              if(sensorVal > sensorMax) {
+                // Set the sensor max value to the highest sensor value
+                sensorMax = sensorVal;
+              }
+              // Check the sensor value is less than
+              // the declared sensor min value.
+              if(sensorVal < sensorMin) {
+                // Set the sensor min value to the lowest sensor value
+                sensorMin = sensorVal;
+              }
+              // Serial print will print the sensor minimum value
+              Serial.println(sensorMin);
+              // Serial print will print the sensor maximum value
+              Serial.println(sensorMax);
+              // This prompt the Red LED to be off
+              digitalWrite(ledPinR, LOW);
+              // This prompt the Yellow LED to be off
+              digitalWrite(ledPinY, LOW);
+              // This prompt the Green LED to be off
+              digitalWrite(ledPinG, LOW);
+            }
+          }
+          // This allow the following behavior to loop until change:
+          void loop() {
+            // Set sensor value to the read value get from the analog pin
+            sensorVal = analogRead(port);
+            // Limit the range of the sensor value in a constrain
+            sensorVal = constrain(sensorVal, sensorMin, sensorMax);
+            // Mapping the value of the Photoresistor
+            int val = map(sensorVal, sensorMin, sensorMax, 0, 255);
+            // Check for the sensor value to be in the range of 10 or less
+            if(val < 10) {
+              // Set the string color to "red" when the red LED fade in
+              color = "red";
+              // Set the Red LED  to the value with enough light fade in
+              analogWrite(ledPinR, 128);
+              // Set the Yellow LED to low (off) position
+              digitalWrite(ledPinY, LOW);
+              // Set the Green LED to low (off) position
+              digitalWrite(ledPinG, LOW);
+            }
+            // If the value is out of the range of 10
+            // Check for the sensor value to be in the range between 10 to 20
+            else if(val >= 10 && val < 20) {
+              // Set the string color to "yellow" when the yellow LED fade in
+              color = "yellow";
+              // Set the Red LED to low (off) position
+              digitalWrite(ledPinR, LOW);
+              // Set the Yellow LED  to the value with enough light fade in
+              analogWrite(ledPinY, 128);
+              // Set the Green LED to low (off) position
+              digitalWrite(ledPinG, LOW);
+            }
+            // If the value is out of the range of 19
+            // Check for the sensor value to be in the range between 20 to 30
+            else if(val >= 20 && val <= 30) {
+              // Set the string color to "green" when the green LED fade in
+              color = "green";
+              // Set the Red LED to low (off) position
+              digitalWrite(ledPinR, LOW);
+              // Set the Yellow LED to low (off) position
+              digitalWrite(ledPinY, LOW);
+              // Set the Green LED  to the value with enough light fade in
+              analogWrite(ledPinG, 128);
+            }
+            // Serial print the string to indicate the "sensor" value will be
+            Serial.print("sensor = ");
+            // Serial printing the sensor value
+            Serial.print(sensorVal);
+            // Serial print the string to indicate the "color" printing
+            Serial.print("\t color = ");
+            // SErial print the color corresponding
+            Serial.println(color);
+            // Delay 10 milliseconds before the next reading
+            // Allow the sensor value to settle in.
+            delay(10);
+          }
+        </pre>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div class="column">
+        <div>
+          <figure>
+            <h4>Operation: </h4>
+            <img src="A3_Operation.gif" width="auto" height="300"/>
+            <figcaption>This is an GIF showing the circuit breadboad in operation mode. A short replay clip of what the circuit does. This circuit was built using Arduino, breadboad, LEDs, resistors, and push button from our kit.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <h4>Voltage Chart</h4>
+          <figure>
+          <img src="A3_Graph.jpg" width="auto" height="300"/>
+          <figcaption>The image is showing the chart in x-axis is time and the y-axis is voltage. Ploting the voltage at V-measure of your voltage divider of the operation.</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="column">
+        <div class="row">
+          <figure>
+            <h4>Serial print output sample: </h4>
+            <img src="A3_Output.png" width="auto" height="300"/>
+            <figcaption>This is a sample output of what the Serial print when the sensor is detecting. The sensor is printing the sensor value along with the color printed in string of the color that is on.</figcaption>
+          </figure>
+      </div>
+      <div>
+        <p> <br> The function of the Photoresistor is to sensor the darkness of the light and allow the LEDs to switch to different color when its in operation state. This is to resemble the heat warning sensor, as mention in Schemaitc section. The closer the hand goes to the Photoresistor the color switch to indicate its warning: if too close will indicate red, if the hand were further away it display green, while in-between is showcase yellow. <br> <br>
+        Although it look quite short and simple, but to perform this I had to use multiple example code from the Arduino IDE: Calibration code example, and Blink coding example. By manipulate the two code, I was able to have the function above. It was quite trials and errors with the calculation of the Photoresistor, eventually I got the gist of it by experimenting the sensoring. When I place the hand closer to the resistor (making the room seem darker) the Red LED color turn on, when pull a little further but not too far away the Yellow LED turn on while the red one turn off, and then once I pull my hand a far away from the Photoresistor the yellow turn off and green turn on.</p>
+      </div>
+    </div>
+    <div>
+      <p> <br> <strong> Additional Question: </strong> <br> <br> 1. In your voltage divider, can the variable resistor be either R1 or R2 or does it need to be one or the other? Justify your answer with example calculations.<br>
+      <ul>
+        <li>
+          R_2 = 10K, V = 5V;
+        </li>
+        <li>
+          V_out = 5(10/10+10) = 2.5 Volt
+        </li>
+        <li>
+          R_1 = 10K, V = 5V; [Photoresistor]
+        </li>
+        <li>
+          V_out = 5(10/10+10) = 2.5 Volt
+        </li>
+        <li>
+          This assuming that the resistor 2 is 10K resistor and the Photoresistor is also acting as 10K resistor as resistor 1. According to the voltage divider in the schematic above I would say that the variable resistor will be either R1 or R2, as I have both connect to a power pin individually, and the resistor (10K) R2 is connect to the pin A0 and ground, as well as the Photoresistor is connected to the resistor and ground if not consider the pin A0.
+        </li>
+      </ul> <br>
+      2. AnalogWrite and analogRead are respectively 8-bit and 10-bit values. Imagine you had 10-bit PWM and a 16-bit analog-to-digital converter instead. How would this change your map() code? Explain your answer.<br>
+      <ul>
+        <li>
+          If I were to use a higher bit value, my map() function will be change as the range of the analogWrite() and analogRead() will change accordingly to the correspond bits. <br>
+          I know that the value range for the analogWrite() 8bit and analogRead() 10-bit values are range from 0 to 1023. While if we look at the anlogWrite() and analogRead() 10-bit to 16-bit the range will change to 0 to 65535. Which means the detecting sensor will have larger range.
+        </li>
+      </ul></p>
+    </div>
+
+  </body>
+</html>
