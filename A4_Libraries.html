@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <title>Ha La's HCDE 439 Physical Computing Page!</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1 class="title">Assignment 4: Libraries!</h1>
+
+    <div class="block">
+      <figure>
+        <img src="red-panda.jpg" width="300" height="300"/>
+        <figcaption> Fig 1: This image is show in side-view of what the circuit board for the Libraries project. The circuit board has a 7-segment display with resistors and wires connecting to Arduino. Another item that is connected to the Arduino is the capacitive sensor, which consist of one resistor and two wires act as send pin and receive pin. There is a aligator wire that will connect to the receive pin to an object.</figcaption>
+      </figure>
+      <div id="intro">
+        <h3> Introduction: </h3>
+        <p>What is this assignment 4? Using Libraries! <br>To count the number of time the object is being touch by a person. <br> <br>
+        For this assignment the requirement was:</p>
+        <ul>
+          <li>To use more than one library,</li>
+          <li>The design must include both input and output part</li>
+          <li>In Arduino code:</li>
+          <ul>
+            <li> if* - using analogRead(),must write code to calibrates the sensor reading.</li>
+          </ul>
+        </ul>
+        <p> <br>Beside the requirements. The intend of this project I want to have the component behave in a way that if I were to touch the metal object (I will be using a key) the sensor will detect and display the number in the 7-segment display screen. However this 7-segment display I will be using for this project will only be able to display number 0-9. Therefore I will only count the number of touch up to nine, and the program will restart counting from 0-9, if were to be touch more than 9 time. <br><br>
+        <strong><big>Let go in more details belows!</big></strong></p>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div>
+        <h3>Schematic: </h3>
+        <p>The following is the schematic of the Libraries project which I used: I show them both in physical circuit board via bird-eye-view, and in sketch version. This is what the board look like to allow the function of the Arduino code to run properly. I have ... <br> <br>
+        When comparing to the physical circuit, we can see ...
+      </p>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="red-panda.jpg" width="auto" height="300"/>
+            <figcaption> Fig2: Showing the circuit boad in bird-eye-view. This image is representing the sketch schematic (image to the right) in  physical circuit board form.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="red-panda.jpg" width="auto" height="300"/>
+            <figcaption> Fig 3: This image show the Schemaitc of the circuit board via sketching.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div>
+        <h4 id="row-content">Resistors: </h4>
+        <p id="row-content">Beside the 7-segment display and the capacitive sensor component, there is a component called the resistors, here is the appropriate resistor value for each resistors used:</p>
+        <ul>
+          <li>7-segments: This calcultion will be for per segments</li>
+          <ul>
+            <li>Knowns: 5 Volt, desire LED at 20mA current, Voltage drop (per segments) = 2V.</li>
+            <li>Formula: V = I(Amperes) * Resistance (Ohms)</li>
+            <li> 5V - 2V = 20mA * R</li>
+            <li> 3V = 20mA * R</li>
+            <li> R = 3 / 0.02 = 150 Ohms</li>
+          </ul>
+          <li>Capacitive Sensor:</li>
+          <ul>
+            <li>Knowns: Capacitive sensor have multiple resistor choices (according to class lector notes)</li>
+            <li>Use a 1 megaohm resistor (or less maybe) for absolute touch to activate.</li>
+            <li>With a 10 megohm resistor the sensor will start to respond 4-6 inches away.</li>
+            <li>With a 40 megohm resistor the sensor will start to respond 12-24 inches away (dependent on the foil size). Common resistor sizes usually end at 10 megohm so you may have to solder four 10 megohm resistors end to end.</li>
+          </ul>
+        </ul>
+        <p> <br> The number I got for the 7-segment display for voltage draw was from <a href="https://www.farnell.com/datasheets/2095874.pdf?_ga=2.127782861.1566654749.1572523254-912966484.1572389117">Farnell Datasheet</a> found in the Arduino forum. The absolutemax forward current is the 25mA continuos, while at peak is 100mA. Although we are only looking at the continuos current flow, rather than at peak. also, the desire current flow is at 20mA, in which I use the 20mA current flow as a limit current. Looking at the graph the forward current per segment compare to the forward voltage, the range of the current is rise from 0 to 100mA is around 2V. Based on this information I assume the voltage drop will be at 2, and after calculation I ended with 150 ohms. The closest to the resistor I have is the 220 ohms resistors.<br><br>
+        As for the Capacitive sensor, according to the notes and guidelines I decided to use 1M (megaohm) as my resistor for the sensing object. Because I would like to sense the number of time the object is being touched. [ Even though we will only be able to display the number from 0 to 9, when using one 7-segment display screen.]<br> <br> </p>
+      </div>
+      <div id="column-split">
+        <h4 id="row-content"> Code: </h4>
+        <p id="row-content"> As mentioned there is a require function from the Arduino to tell what the LEDs do, how the Photoresistor will behave, and how the sensoring effects comes in to play. The following is a snippet of the Arduino code: <br> </p>
+        <pre id="para-end">
+          // Variables will not be change:
+          // Declaring ledPin color connect to which pin in the Arduino
+
+          // Variables will be change:
+
+          // This act like the motor of the code, by running the code in order
+          void setup() {
+
+          }
+
+          // This allow the following behavior to loop until change:
+          void loop() {
+
+          }
+        </pre>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div class="column">
+        <div>
+          <figure>
+            <h4>Operation: </h4>
+            <img src="red-panda.jpg" width="auto" height="300"/>
+            <figcaption>This is an GIF showing the circuit breadboad in operation mode. A short replay clip of what the circuit does. This circuit was built using Arduino, breadboad, LEDs, resistors, and push button from our kit.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <h4>Serial print output sample</h4>
+          <figure>
+          <img src="red-panda.jpg" width="auto" height="300"/>
+          <figcaption> ....</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="column">
+        <!-- <div class="row"> -->
+          <!-- <figure> -->
+            <!-- <h4>Additional question chart: </h4> -->
+            <!-- <img src="red-panda.jpg" width="auto" height="300"/> -->
+            <!-- <figcaption>....</figcaption> -->
+          <!-- </figure> -->
+        <!-- </div> -->
+      <div>
+        <p> <br> The function of the ...</p>
+      </div>
+    </div>
+    <div>
+      <p> <br> <strong> Additional Question: </strong> <br> <br>  Say you are using a servo motor you attach to pin 9. In your loop() you have the following code:
+        <pre> for (int i=0, i<180, i++) {
+          servo.write(i);
+          delay(100);
+        } </pre>
+      Draw a graph with the X axis in seconds, for two seconds, and the y-axis the voltage at pin 9 with respect to ground. <br>
+      <div>
+      <div class="column">
+        <div class="row">
+          <figure>
+            <!-- <h4>Additional question chart: </h4> -->
+            <img src="red-panda.jpg" width="auto" height="300"/>
+            <figcaption> This image display the chart drawing for additional question 1. Drawing with the x -axis in seconds, and for two seconds, and the y-axis the voltage at pin 9 with respect to ground.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <p> <br> The function of the ...</p>
+        </div>
+      </div>
+      <br>
+      2. Your input device is slightly broken, leading it to give us an erroneous reading 1% of the time. How can we address this? Answer in (pseudo)code.<br>
+      <ul
+        <li>...</li>
+      </ul> <br>
+      3. Your input device is slightly noisy, leading the measurement to randomly deviate from the true measurement up or down by 10%. How can we address this? Answer in (pseudo)code. <br>
+      <ul
+        <li>...</li>
+      </ul>
+    </p>
+    </div>
+
+  </body>
+</html>
