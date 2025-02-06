@@ -232,6 +232,8 @@
             long total = cs_4_2.capacitiveSensor(30);
             // Mapping the range and store the value in to val
             val = map(total, senMin, senMax, 0, 9);
+            // Constrain sensor value to the declared range of min and max
+            val = constrain(val, senMin, senMax);
 
             // When val is greater then minimum value is mean it's being touched
             if (val > senMin) {
@@ -352,7 +354,7 @@
       </ul>
       3. Your input device is slightly noisy, leading the measurement to randomly deviate from the true measurement up or down by 10%. How can we address this? Answer in (pseudo)code. <br>
       <ul>
-        <li> This remind me of the situation that I encounter, when trying to have the value in of the capacitive sensor that was calibrating be in the range of the sensor range. </li>
+        <li> This remind me of the situation that I encounter, when trying to have the value in of the capacitive sensor that was calibrating be in the range of the sensor range. Using constraint here will be beneficial, as it prevent the value higher than the declared max value, and lower than the declared min value.</li>
         <li>
           <pre>
             // pseudo-code to support the answer:
@@ -383,6 +385,7 @@
               long total =  cs_4_2.capacitiveSensor(30);
               // mapping the value from minimum to maximum, and store in val.
               val = map(total, senMin, senMax, 0, 9);
+              val = constrain(val, senMin, senMax);
             }
           </pre>
         </li>

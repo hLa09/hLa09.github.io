@@ -130,8 +130,8 @@ pre {
 
 .content {
   display: grid;
-  grid-template-columns: 3fr auto;
-  gap: 3px;
+  grid-template-columns: 2fr 2fr;
+  gap: 1px;
   margin-top: 2em;
   align-items: first baseline;
 }
@@ -146,7 +146,7 @@ pre {
 
 .column {
   display: grid;
-  grid-template-columns: 2fr 2fr;
+  grid-template-columns: auto auto;
   gap: 5px;
   margin-top: 1em;
   /* align-items: center; */
@@ -167,7 +167,7 @@ pre {
 .row-column {
   display: grid;
   grid-template-rows: auto auto;
-  gap: 3px;
+  gap: 1px;
   margin-top: 1em;
 }
 
