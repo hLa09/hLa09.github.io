@@ -174,7 +174,7 @@ pre {
 .row {
   display: grid;
   grid-template-rows: auto;
-  gap: 3px;
+  gap: 5px;
   margin-top: 1em;
 }
 
@@ -183,6 +183,13 @@ pre {
   align-items: center;
 }
 
+/* #rotate { */
+  /* transform: rotate(270deg); */
+  /* gap: 10px; */
+  /* align-items: center; */
+  /* padding-top: -30px; */
+/* } */
+/*  */
 /* #column-split { */
   /* border: 2px; */
   /* border-left-style: groove; */

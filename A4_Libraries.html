@@ -82,7 +82,7 @@
       </div>
       <div id="column-split">
         <h4 id="row-content"> Code: </h4>
-        <p id="row-content"> As mentioned there is a require code function from the Arduino to tell what the 7-segments display component will display which number, and how the capacitive sensor. The following is a snippet of the Arduino code: <br> </p>
+        <p id="row-content"> As mentioned there is a require code function from the Arduino to tell what the 7-segments display component will display which number, and how the capacitive sensor. The following is a snippet of the Arduino code: <br> For this code, I use the example given with the libraries to understand the code written with the library to write the program behavea certain way. The example I use to assist: Calibration, CapacitiveSensorSketch, and SevSeg_counter, beside examples I also did read the github site to further grasp the why use the parameters, and ways to set up the functions. Here is the link to the <a href="https://github.com/DeanIsMe/SevSeg" >SevSeg library </a>. for the Capacitive Sensor and the Calibration I understand the code a little more, so I just modify and use what I need.</p>
         <pre id="para-end">
           // The following is the libraries that will be used in the program
           // This library is need for the Capacitive Sensor class
@@ -226,8 +226,6 @@
 
           // This allow the following behavior to loop until change:
           void loop() {
-            // Keep track of milliseconds from the start and stored them
-            long start = millis();
             // Declare a value that contains added capacitance.
             // Keep track of the calibrating interval, running on a 30ms speed.
             // Basically doing a reading on the Capacitive sensor
@@ -269,7 +267,7 @@
         <div>
           <figure>
             <h4>Operation: </h4>
-            <img src="red-panda.jpg" width="auto" height="300"/>
+            <img src="A4_Operation.gif" width="auto" height="300"/>
             <figcaption>This is an GIF showing the circuit breadboad in operation mode. A short replay clip of what the circuit does. This circuit was built using Arduino, breadboad, 7-segments display, resistors, wires, and aligator wire from our kit.</figcaption>
           </figure>
         </div>
@@ -295,32 +293,99 @@
     </div>
     <div>
       <p> <br> <strong> Additional Question: </strong> <br> <br>  Say you are using a servo motor you attach to pin 9. In your loop() you have the following code:
-        <pre> for (int i=0, i<180, i++) {
-          servo.write(i);
-          delay(100);
-        } </pre>
-      Draw a graph with the X axis in seconds, for two seconds, and the y-axis the voltage at pin 9 with respect to ground. <br>
+        <pre>
+          for (int i=0, i<180, i++) {
+            servo.write(i);
+            delay(100);
+          }
+        </pre>
+      Draw a graph with the X axis in seconds, for two seconds, and the y-axis the voltage at pin 9 with respect to ground.</p>
       <div>
       <div class="column">
         <div class="row">
           <figure>
             <!-- <h4>Additional question chart: </h4> -->
-            <img src="red-panda.jpg" width="auto" height="300"/>
+            <img src="A4_Question1.jpg" width="auto" height="300"/>
             <figcaption> This image display the chart drawing for additional question 1. Drawing with the x -axis in seconds, and for two seconds, and the y-axis the voltage at pin 9 with respect to ground.</figcaption>
           </figure>
         </div>
         <div>
-          <p> <br> The function of the ...</p>
+          <p> <br> For this question, assuming this servo motor will connect pin 9 in the Arduino. The Arduino typically draw voltage at 5V, so I use this as a value to see how the voltage will draw when servo motor run. This graph I draw what voltage is draws when servo motor runs for two seconds, and what happen when there is a delay.</p>
         </div>
       </div>
       <br>
       2. Your input device is slightly broken, leading it to give us an erroneous reading 1% of the time. How can we address this? Answer in (pseudo)code.<br>
-      <ul
-        <li>...</li>
-      </ul> <br>
+      <ul>
+        <li> This remind me of the sensor reading. When I first play around with the sensor, the value display also randomly and it look like the sensor is off. Though to counter this issue I will try to use Calibration to have the reading more accurate in the range.</li>
+        <li>
+          <pre>
+            // pseudo-code to support the answer:
+            // declare sensor pins
+            const int senPin = A0;
+            // declare value to store for the sensor value
+            int senVal = 0;
+            // declare value to store for sensor minimum value
+            int senMin = 1023;
+            // declare value to store for sensor maximum value
+            int senMax = 0;
+            // Main method to run program
+            void setup() {
+              // Calibrating for the first five seconds
+              // Intend to get the range for the sensor for more accurate reads
+              while(millis() < 5000) {
+                // to store the reading value in the senVal
+                senVal = analogRead(senPin);
+                // Check for the senVal to be greater then senMax
+                if (senVal > senMax) {
+                  // store the value to the senMax
+                  senMax = senVal;
+                }
+                // Check for the senVal to be less then senMin
+                if (senVal < senMin) {
+                  // store the minimum value to senMin
+                  senMin = senVal;
+                }
+              }
+            }
+          </pre>
+        </li>
+      </ul>
       3. Your input device is slightly noisy, leading the measurement to randomly deviate from the true measurement up or down by 10%. How can we address this? Answer in (pseudo)code. <br>
-      <ul
-        <li>...</li>
+      <ul>
+        <li> This remind me of the situation that I encounter, when trying to have the value in of the capacitive sensor that was calibrating be in the range of the sensor range. </li>
+        <li>
+          <pre>
+            // pseudo-code to support the answer:
+            void setup(){
+              // there will be set up for pinMode output
+              // and other necessary code to set up the program
+              // store value that capacitive sensor read to the total value
+              long total = cs_4_2.capacitiveSensor(30);
+              // Calibrating for the first five seconds
+              while(millis() < 5000) {
+                // to store the reading value in the senVal
+                senVal = analogRead(total);
+                // Check for the senVal to be greater then senMax
+                if (senVal > senMax) {
+                  // store the value to the senMax
+                  senMax = senVal;
+                }
+                // Check for the senVal to be less then senMin
+                if (senVal < senMin) {
+                  // store the minimum value to senMin
+                  senMin = senVal;
+                }
+              }
+            }
+            // have the program running continuosly
+            void loop(){
+              // store value that capacitive sensor read to the total value
+              long total =  cs_4_2.capacitiveSensor(30);
+              // mapping the value from minimum to maximum, and store in val.
+              val = map(total, senMin, senMax, 0, 9);
+            }
+          </pre>
+        </li>
       </ul>
     </p>
     </div>
