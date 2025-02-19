@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <title>Ha La's HCDE 439 Physical Computing Page!</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1 class="title">Assignment 5: High(er) Voltage and Transistors!</h1>
+
+    <div class="block">
+      <figure>
+        <img src="A5_Circuit_sideview.jpg" width="300" height="300"/>
+        <figcaption> Fig 1: This image is show in side-view of what the circuit board for the Transistor project. Consist of various wires, a DC motor and fan, along with aligator clip connected to a coin, acting as a metal object. All of which connecting and power using breadbboad, power supply and Arduino.</figcaption>
+      </figure>
+      <div id="intro">
+        <h3> Introduction: </h3>
+        <p>What do we do with Assignment 5? Using external power supply and N-MOSFET transistor! <br> This assignment want us to use an external power supply to play around with N-MOSFET transistor. Since our Arduino can only supply up to 5 Voltage, some component would need more than 5V to perform. For this assignment, I use a capacitive sensor to receive signal range that allow the DC motor to run.<br> <br>
+        For this assignment the requirement was:</p>
+        <ul>
+          <li>Must use a N-MOSFET transistor</li>
+          <li>Must use external power supply</li>
+          <li>Must use an input sensor that uses a library</li>
+          <ul>
+            <li> -> here I will use capacitive sensor library.</li>
+          </ul>
+          <li>In Arduino code:</li>
+          <ul>
+            <li>should at least use analogWrite(). During pinMode() initializing.</li>
+          </ul>
+        </ul>
+        <p> <br>For the component uses: I will use a DC motor, a coin for CapacitiveSensor acting as a sensor for signal. A power supply of 9 voltages, along with 1 Megaohm and N-MOSFET transistor to limit the currents following through the components.<br><br>
+        <strong><big>Let go in more details belows!</big></strong></p>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div>
+        <h3>Schematic: </h3>
+        <p>In my schematic, I have two images to show how the components connecting to each others. There are Arduino and a external power supply is connecting to power. I also uses a external power supply module to assist me with connecting to the component without wiring mess. The image in the right show that the red wires are connect to some sort of power, one of the red wire is connected to the 5V of the Arduino to the power on the circuit. While the second red wire connecting from the circuit with the transistor to Arduino is insert in pin 9 and there is a red wire the coming from the motor contecting to the power band on the circuit that links to the external power supply. Beside the red wires, there is a black wires indicates ground connection of the components. However, there are one black wire coming from the motor is connected to the drain pin of the transistor. The remain color coded wires are orange and yellow. The orange is connect to pin 2, this is a sensor of the capactive sensor. Which leaves the yellow a receiver of the cacpacitive sensor connected to pin 4. Addition to wires connect from breadbboad to power, the aligator clip is connect with pin 2 of the resistor and the coin (metal object).<br> <br> When break it down in drawing it look much simplier, first on the left we have the capacitive sensor; where pin 2 is a sensor pin, and is being clip by a aligator clip connected to a 1M (megaohm) resistor to pin 4, a receiver. To the right is the connectors for the motor. Where we have power supple connect to the inductor (DC motors) and to the transistor, at the transistor we have one connect to pin 9, one connect to the negative wire of the motor (drain) one is connect to ground to avoid components shortage.
+      </p>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="A5_Circuit_topview.jpg" width="auto" height="300"/>
+            <figcaption> Fig2: Showing the circuit boad in bird-eye-view. This image is representing the sketch schematic (image to the right) in  physical circuit board form.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="A5_Graph.jpg" width="auto" height="300"/>
+            <figcaption> Fig 3: This image show the Schematic of the circuit board via sketching.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div>
+        <h4 id="row-content">Transistor and Resistors: </h4>
+        <p id="row-content"> For this assignment: I uses 1M (megaohm) resistor to limit the currents floowing through the CapacitiveSensor, and a transistor.</p>
+        <ul>
+          <li>Capacitive Sensor: (details on why resistor are are)</li>
+          <ul>
+            <li>Knowns: Capacitive sensor have multiple resistor choices (according to class lector notes and <a href="https://www.86duino.com/?p=5922"> Capacitive Sensor Library</a>)</li>
+            <li>Use a 1 megaohm resistor (or less maybe) for absolute touch to activate.</li>
+            <li>With a 10 megohm resistor the sensor will start to respond 4-6 inches away.</li>
+            <li>With a 40 megohm resistor the sensor will start to respond 12-24 inches away (dependent on the foil size). Common resistor sizes usually end at 10 megohm so you may have to solder four 10 megohm resistors end to end.</li>
+          </ul>
+          <li>Transistor:</li>
+            <ul>
+              <li>Is a active components that can use to control the flow of the current and amplify or switch electronic signal.</li>
+            </ul>
+        </ul>
+        <p> <br>Based on the guideline for resistor, I intend to use the CapacitiveSensor for touched signaling, so I uses a 1M resistor. </p>
+      </div>
+      <div id="column-split">
+        <h4 id="row-content"> Code: </h4>
+        <p id="row-content">The following code is use to perform the behavior of the motor. </p>
+        <pre id="para-end">
+          /* This program intend have the DC Motor run when signal
+          is detected within the range, and will stop when signal
+          is out of range. Using Calibration to set the sensor
+          minimum and maximum range, and constrain the range for more
+          accurate behavior. */
+          // The following is the library that will be used in the program
+          // This library is need for the Capacitive Sensor class
+          #include '<'CapacitiveSensor.h'>'
+
+          // This is where I initialize capacitive sensor object
+          // Passing in the pins that will be use
+          // Pin 4 is use as a receiver pin
+          // Pin 2 is use as a sensor pin
+          CapacitiveSensor cs_4_2 = CapacitiveSensor(4,2);
+
+          // Variables will not be change:
+          const int motorpin = 9;
+
+          // Variables will be change:
+          // This initialize for Calibration purpose
+          // The intention is limit the range of the sensor in specific environment
+          // Declare val to store value for mapping
+          int val = 0;
+          // Declare senVal to store sensor value in the first five seconds
+          int senVal = 0;
+          // Declare senMin to store the minimum value of the sensor value
+          int senMin = 1023;
+          // Declare senMax to store the maximum value of the sensor value
+          int senMax = 0;
+
+          // This act like the engine of the code, by running the code in order
+          void setup() {
+            // Turning of the auto-calibrating on channel 1. Avoid inaccurate reading
+            cs_4_2.set_CS_AutocaL_Millis(0xFFFF);
+            // The speed the Serial communication speed
+            Serial.begin(9600);
+
+            // Declare a value that contains added capacitance.
+            // Keep track of the calibrating interval, running on a 30ms speed.
+            long total = cs_4_2.capacitiveSensor(30);
+
+            // Calibrating for the first five second to set range for the sensor
+            while(millis() < 5000){
+              // set senVal to the reading of the total value
+              senVal = analogRead(total);
+              // Check for the maximum value
+              if (senVal > senMax){
+                // set the senMax to the senVal maximum value
+                senMax = senVal;
+              }
+              // Check for the minimum value
+              if (senVal < senMin) {
+                // set the senMin to the senVal minimum value
+                senMin = senVal;
+              }
+            }
+
+            // Print statements:
+            // Print the string saying this is minimum value of the sensor range
+            Serial.print("sensor min value = ");
+            // Print the minimum range value
+            Serial.println(senMin);
+            // Print the string saying this is maximum value of the sensor range
+            Serial.print("sensor max value = ");
+            // Print the maximum range value
+            Serial.println(senMax);
+            // Printing a blank line -> setting the next token to a new line
+            Serial.println();
+
+            //Setting the display initial state
+            // This will put the motor in it stopping posisiton
+            // Where the fan is not moving, setting up stage for the upcoming detecting signal.
+            analogWrite(motorpin, 0);
+            // Deay for 10 milliseconds avoid glitching
+            delay(10);
+
+          }
+
+          // This allow the following behavior to loop until change:
+          void loop() {
+            // Declare a value that contains added capacitance.
+            // Keep track of the calibrating interval, running on a 30ms speed.
+            // Basically doing a reading on the Capacitive sensor
+            long total = cs_4_2.capacitiveSensor(30);
+            // Constrain sensor value to the declared range of min and max
+            val = constrain(total, senMin, senMax);
+            // Mapping the range and store the value in to val
+            // analogWrite() have range of 0 to 255
+            val = map(total, senMin, senMax, 0, 255);
+
+            // Check to see if the signal detect is in the range
+            if (val > senMin && val < senMax) {
+              // Running (spin) the motor fan to the speed the sensor detected
+              analogWrite(motorpin, val);
+              // Print the sensor signal value
+              Serial.print(total);
+              // Printing a blank line -> setting the next token to a new line
+              Serial.println();
+            }
+            // Deay for 10 milliseconds avoid glitching
+            delay(10);
+          }
+        </pre>
+      </div>
+    </div>
+
+    <div class="row-column">
+      <div class="column">
+        <div>
+          <figure>
+            <h4>Operation: </h4>
+            <img src="A5_Operation.gif" width="auto" height="300"/>
+            <figcaption>This is an GIF showing the circuit breadboad in operation mode. A short replay clip of what the circuit does. This circuit was built using Arduino, breadboad, External power supply, DC motor, transistor, resistor, wires, and aligator wire from our kit.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <h4>Serial print output sample</h4>
+          <figure>
+          <img src="A5_output_sample.png" width="auto" height="300"/>
+          <figcaption> This is a sample of what the Serial function is printing out for the behavior that displayed and written. We can see that at the top it will print the minimum and maximum value of the sensor, then there is a follow up of number of that fall in the range of the minimum and maximum sensor value.</figcaption>
+          </figure>
+        </div>
+      </div>
+      <!-- <div class="column"> -->
+        <!-- <div class="row"> -->
+          <!-- <figure> -->
+            <!-- <h4>Segment display: </h4> -->
+            <!-- <img src="A5_Graph.png" width="auto" height="300"/> -->
+            <!-- <figcaption>???</figcaption> -->
+          <!-- </figure> -->
+        <!-- </div> -->
+      <div>
+        <p> <br> Let take a look of what my circuit does in operation mode: at the start I have the CapacitiveSensor sit for five seconds to calibrating the range of the sensor, and set min and max value. See the image on the right for out put. Then I begin approaching the coin (sensor) so that the signal can be detected, and once signal pick up, we can see that the fan is spinning - the number is in the range. We can see that at first the sensor detect a value in range and then out of range, this is the glicth in the begining where I the signal pick up are too high the fan isn't running properly. The remain tries went smoother, as the value fall perfectly in the range. Having the motor run at the value speed, means the value that is being detected is the speed the motor runs. Although, the analogWrite() only read from 0 to 255, this is where the map function fit in, allow the value that is being read get convert to the necessary range.</p>
+      </div>
+    </div>
+    <div>
+      <p> <br> <strong> Additional Question: </strong>
+        <ul>
+          <li>
+            (1) This is the datasheet for the n-mosfet transistor: <a href="https://www.diodes.com/assets/Datasheets/DMT6009LCT.pdf">Datasheets</a> What is the absolute maximum amount of current between pins 2 and 3?
+          </li>
+          <ul>
+            <li>When pin 2 is drain and pin 3 is source for the N-MOSFET transistor, the max current is 37.2 A. Under the Maximum ratings section, when power is continuosly drain current.</li>
+          </ul>
+          <li>(2) Draw a schematic for a circuit with using at least your arduino, a DC motor, a flyback diode, and capacitors between power and ground. Find parts with datasheets you could use for each of these schematic components.</li>
+          <ul>
+            <div class="column">
+              <div class="row">
+                <figure>
+                  <!-- <h4>Segment display: </h4> -->
+                  <img src="A5_Question_2.jpg" width="auto" height="300"/>
+                  <figcaption>This is an image of hand drawing schematic for question 2.</figcaption>
+                </figure>
+              </div>
+              <div> <p>Datasheets for part uses in the schematics:
+                <ul>
+                  <li><a href="https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf"> Arduino </a></li>
+                  <li> <a href="https://learn.sparkfun.com/tutorials/motors-and-selecting-the-right-one"> link to learn more about motors.</a> The ARduino datasheet site keep link me to the error page, therefore I look up to a similar one:<a href="https://www.sparkfun.com/hobby-motor-gear.html"> Motor </a> </li>
+                  <li> <a href="https://www.farnell.com/datasheets/2863955.pdf"> Flyback diode </a></li>
+                  <li> <a href="https://www.farnell.com/datasheets/1558295.pdf"> Capacitor </a> </li>
+                </ul>
+              </p>
+              </div>
+            </div>
+          </ul>
+          <li>(3)  Here is the datasheet for the L293D chip: <a href="https://www.ti.com/product/L293D">Product link </a>Draw a schematic using at least your arduino, this chip, and two motors. Write (pseudo) code that shows how you would move the motors both forward, both back, then one forward one back, and one back then forward.</li>
+        </ul>
+      </p>
+    </div>
+
+  </body>
+</html>
