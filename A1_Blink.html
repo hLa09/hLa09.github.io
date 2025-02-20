@@ -42,7 +42,7 @@
     <div class="row-column">
       <div>
         <h3>Schematic: </h3>
-        <p>....<br> <br>....</p>
+        <p>For the schematics, the picture to the right show how the ciruict look in physical visualization. In the circuit board it consist of color coded wires, LEDs, and resistors. For each components on the board: the red wires indicate the power connection, while the black wires indicate ground connection. We have 3 LEDs on the board, they are Red LED, Yellow LED, and Green LED. Each of the LEDs has its own resistors to limit the current flow through, so there will be calculation for thoses in the calculation section. The Red LED connect to pin 2, and Yellow connect to pin 4, and Green connect to pin 7 on the Arduino board for power.<br> <br>Looking at the schematic drawing, we can see that each LEDs has it own power as they all are connect to individual pin, and connect to a resistor, then to the LED itself before connecting to the ground.</p>
       </div>
       <div class="content">
         <div>
@@ -96,7 +96,67 @@
         <h4 id="row-content"> Code: </h4>
         <p id="row-content"> As mentioned there is a require function from the Arduino IDE to tell the LEDs how to behave to make the effects comes in to play. The following is a snippet of the Arduino code: <br> </p>
         <pre id="para-end">
-          ....
+          // Variable will not change
+          // Declaring LED colored pin
+          // LED represent for Red is connect to pin 2
+          const int ledPinR = 2;
+          // LED represent for Yellow is connect to pin 4
+          const int ledPinY = 4;
+          // LED represent for Green is connect to pin 7
+          const int ledPinG = 7;
+
+          // This act like the motor of the code, by running the code in order
+          // the pinMode as output
+          void setup() {
+            // Set pin for LED Red as output
+            pinMode(ledPinR, OUTPUT);
+            // Set pin for LED Yellow as output
+            pinMode(ledPinY, OUTPUT);
+            // Set pin for LED Green as output
+            pinMode(ledPinG, OUTPUT);
+          }
+
+          // This allow the following behavior to loop until changes
+          void loop() {
+            // Setting the Red on, while having the remain LED off
+            digitalWrite(ledPinR, HIGH);
+            // This LED yellow is off
+            digitalWrite(ledPinY, LOW);
+            // This LED green is off
+            digitalWrite(ledPinG, LOW);
+            // Delaying for 100 milliseconds before turn another light on
+            delay(100);
+
+            // Setting the Yellow on, while having the remain LED off
+            // This LED red is off
+            digitalWrite(ledPinR, LOW);
+            // This LED yellow is on
+            digitalWrite(ledPinY, HIGH);
+            // This LED green is off
+            digitalWrite(ledPinG, LOW);
+            // Delaying for 100 milliseconds before turn another light on
+            delay(100);
+
+            // Setting the Green on, while having the remain LED off
+            // This LED red is off
+            digitalWrite(ledPinR, LOW);
+            // This LED yellow is off
+            digitalWrite(ledPinY, LOW);
+            // This LED green is on
+            digitalWrite(ledPinG, HIGH);
+            // Delaying for 100 milliseconds before turn another light on
+            delay(100);
+
+            // Setting the Yellow on, while having the remain LED off
+            // This LED red is off
+            digitalWrite(ledPinR, LOW);
+            // This LED yellow is on
+            digitalWrite(ledPinY, HIGH);
+            // This LED green is off
+            digitalWrite(ledPinG, LOW);
+            delay(100);
+          }
+
         </pre>
       </div>
     </div>
@@ -114,13 +174,12 @@
           <h4>Voltage Chart</h4>
           <figure>
           <img src="A1_Graph.jpg" width="auto" height="300"/>
-          <figcaption> ....</figcaption>
+          <figcaption> This is an image of what voltage is drawn when LED is on. Each LED has its own graph. Red, Yellow, and Green LEDs all have a 1.8 Voltage drop so the Voltage for each LED is not at 5V.</figcaption>
           </figure>
         </div>
       </div>
       <div>
-        <p> <br> ....<br> <br>
-          .... </p>
+        <p> <br>For this program I want to program it similar to a street light, so the LED blinking in order of red, yellow, green, then yellow and red in repeat. </p>
         <p> <br> <strong> Additional Question: </strong> <br>
           <ul>
             <li>1. How many LEDs could you blink independently with your Arduino?</li>
