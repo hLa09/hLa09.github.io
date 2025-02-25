@@ -44,8 +44,8 @@
     <div class="row-column">
       <div>
         <h3>Schematic: </h3>
-        <p>The following is the schematic of the Fading project which I used: I show them in both physical circuit board via bird-eye-view, and in sketch version. This is what the board look like to allow the function of the Arduino code to run properly. I have one button and one RGB LED which consists of Red, Green, and Blue LEDs. The reason I chose this specific RGB LED is to allow me to perform a color that a single LED couldn't display. As I apply the knowledge I learn in the class's activity, by using the RGB LED to showcase colors combination such as yellow, or pink with fading effects. <br> <br>
-        When compare to the physical ciruit, we can see each red wire connect to a pin so the power is drawing individually rather than connected. The red wires on the LEDs side connect to the resistors (each connect individually as well). Then each resistor connect to the LED, and the LED is connect to the ground (in black wire). While on the button side we can see that the button has four legs, and one leg is directly connect to power (5 Volt) and the other leg is connect to a pin, and a resistor. The resistor is also connect to the ground wire (black).
+        <p> The following images are my schematics: the image ont he right display the bird-eye-view of the physical circuit, and the right display the sketch version of the schematic connection.<br> <br>
+        When compare to the physical ciruit, we can see each colored (red, yellow, white, blue, green) wires is connected to a pin that are connected to power. Each LEDs is drawing individually rather than connected to a power source. The red wire connect to pin 2, Yellow wire connected to pin 4, White wire connect to pin 7, Blue wire connect to pin 12, nd Green wires connect to pin 13. While the black wires all connect to ground source. For the Joystick, there are four pin we going to use up on the Arduino, one is for the ground (black wire), one for the 5 Voltage (power, blue wire), one for the VRx connection to A1 - to indicate x position. Lastly, one for the VRy connect to A0, to indicate the y position of the Joystick. We can see that the sketch is referencing the physical circuit board, by the labeling and their connection.
       </p>
       </div>
       <div class="content">
@@ -67,42 +67,32 @@
     <div class="row-column">
       <div>
         <h4 id="row-content">Resistors: </h4>
-        <p id="row-content">Beside the LEDs and the button, there is a component called the resistors, here is the appropriate resistor value for each color LED was calculated as follow:</p>
+        <p id="row-content"> For this assingment I use LEDs as my output and I have five of them, here is the appropriate resistor value for each color LED was calculated as follow:</p>
         <ul>
-          <li>...</li>
+          <li>The Red, Yellow, Green LEDs: (all have a voltage drop of 1.8V)</li>
           <ul>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
+            <li>Knowns: 5V, -1.8V drop, 20mA desire current</li>
+            <li>Formula: Voltage (V) = I (current, A) * R (resistor, ohms)</li>
+            <li>5V - 1.8V = 20mA * R</li>
+            <li>3.2V = 0.02A * R</li>
+            <li>R = 3.2V / 0.02 = 160 ohms</li>
           </ul>
-          <li>...</li>
+          <li>The White and Blue LEDs: (both have a voltage drop of 3.3V)</li>
           <ul>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
-          </ul>
-          <li>...</li>
-          <ul>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
+            <li>Knowns: 5V, -3.3V drop, 20mA desire current</li>
+            <li>Formula: Voltage (V) = I (current, A) * R (resistor, ohms)</li>
+            <li>5V - 3.3V = 20mA * R</li>
+            <li>1.7V = 0.02A * R</li>
+            <li>R = 1.7V / 0.02 = 85 ohms</li>
           </ul>
         </ul>
-        <p> ... <br><br>
-        ...<br> <br> </p>
+        <p> Based on the calculation, the LEDs range of ohms fall in 85 ohms to 160 ohms. Which in the Arduino kit, I have 220ohm resitors that can apply for the LEDs. Though the White and Blue LEDs will be showing a dimmer light, as the resistor are higher than the calculation. However, it still won't cause a significant differents. <br><br>
+        The purposed of using resistors is to limit the current flows through the LEDs. To ensure that each LEDs does not have a current flow over 20mA, I use resistor of 220 ohms per LEDs.<br> <br> </p>
       </div>
       <div class="row-column">
         <div>
           <h4 id="row-content">Javascript: </h4>
-          <p id="row-content">Beside the LEDs and the button, there is a
-      component called the resistors, here is the appropriate resistor value
-      for each color LED was calculated as follow:</p>
+          <p id="row-content">The follwoing is the javascript I use to have the webpage display how its suppose to. By passing in the serial communication and using the data from the Arduino, we will be able to map the range and have the animation being draw using the draw function from javascript.</p>
           <pre>
             // This should match the baud rate in your Arduino sketch
             const BAUD_RATE = 9600;
@@ -227,7 +217,7 @@
         </div>
       <div id="column-split">
         <h4 id="row-content"> Firmware Code: </h4>
-        <p id="row-content"> As mentioned there is a require function from the Arduino to tell what ... The following is a snippet of the Arduino code: <br> </p>
+        <p id="row-content"> The Arduino purpose is to store all the neccessary code for the circuit to behave the way it is. It also send out serial data input from the circuit to javascript to display on the webpage.<br> </p>
         <pre id="para-end">
           // Variable that will be connect to a pin on the Arduino
           // unchange variables.
@@ -405,14 +395,14 @@
         <div>
           <h4>Voltage Chart</h4>
           <figure>
-          <img src="A6_Graph.jpg" width="auto" height="300"/>
-          <figcaption>The image is showing the chart in x-axis is time and the y-axis is voltage. With three lines in differents colors representing the voltage across the LED with analogWrite(led, 64); analogWrite(led, 128); and analogWrite(led, 255). </figcaption>
+          <img src="A6_Webpage.jpg" width="auto" height="300"/>
+          <figcaption>The image display what the webpage show when the Circuit is in action. There is a coordinates value of (x, y) on the top left near the button say Disconnect. And in the big canvas there's a stroke line that display where the coordinates ranges on the canvas and stroke line displaying where the Joysitck've been.</figcaption>
           </figure>
         </div>
       </div>
       <div>
-        <p> <br> The function of the button is to turn off the LEDs when its in operation state. The button will also turn on the LEDs, when the LEDs is in off state. As you can see the LEDs is in operation state at first, and once I push the button (that add up to the count when modulo 2 is no equal 0) its turn off. Then turn back on again when I push on the button. The LEDs function not just light up, but in fact is fading from one color to the next. In this case I set the color from bright yellow fading to white and change from bright white to gainning color to a darker pink/red. <br> <br>
-        Although it look quite short and simple, but to perform this I had to use multiple example code from the Arduino IDE: StateChangeDetection code example, and Fading coding example. By manipulate the two code, I was able to have the function above. It was quite trials and errors with the calculation of the push button, eventually I got the gist of it by experimenting the button. When I push the button and counts the number I am at and for every two push it counts one, and once the count gets modulo to 2 and equals to zero the LEDs will turn on, and the LEDs will turn off if not equal to zero.</p>
+        <p> ....
+        </p>
       </div>
     </div>
 
