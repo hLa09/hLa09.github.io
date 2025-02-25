@@ -1,11 +1,12 @@
 // This should match the baud rate in your Arduino sketch
 const BAUD_RATE = 9600;
-// Declare global variables
-let port, connectBtn;
 // declare variable to store previous value of x position
 let pX = 0;
 // declare variable to store previous value of y position
 let pY = 0;
+// Declare global variables
+let port, connectBtn;
+
 // This function help setting up the webpage
 function setup() {
   // Run our serial setup function (below)
