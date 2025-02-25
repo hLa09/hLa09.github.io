@@ -76,8 +76,6 @@ function draw() {
 }
 
 // Three helper functions for managing the serial connection.
-// from class example
-
 function setupSerial() {
   port = createSerial();
 
