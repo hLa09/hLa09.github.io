@@ -106,14 +106,13 @@
             function setup() {
               // Run our serial setup function (below)
               setupSerial();
-
               // Create a canvas that is the size of our browser window.
               // windowWidth and windowHeight are p5 variables
               createCanvas(windowWidth, windowHeight);
               // Creating a stroke like density of 4
               strokeWeight(4);
-              // Adding stroke line color to distinct from the blackground
-              stroke(rgb(132, 227, 253));
+              // Adding stroke line color black to distinct from the blackground
+              stroke('#222222');
               // p5 text settings. BOLD and CENTER are constants provided by p5.
               // See the "Typography" section in the p5 reference: https://p5js.org/reference/
               textFont("system-ui", 50);
@@ -132,19 +131,24 @@
               if (str.length == 0) return;
               // Trim whitespace and split on commas
               let arr = str.trim().split(",");
-
+              // Make the background aqua color
+              background('rgb(150, 248, 255)');
               // Convert each value from analogRead to a number, map it to the joystick range, and round to nearest integer
               // for example of serial passing in: 511, 509, then the value will be convert to the window's range
               const x = round(map(Number(arr[0]), 0, 1023, windowWidth*0.5, windowWidth*0.75));
               const y = round(map(Number(arr[1]), 0, 1023, windowHeight*0.5, windowHeight*0.75));
-              // Make the background black
-              background(0);
-              // text white
-              fill(255);
+              // filling the text white
+              fill('rgb(255, 255, 255)');
               // the size of the text display
-              textSize(20);
+              textSize(40);
               // Display text in order of x value, y value on the following coordinates of the window frame
-              text(`${x}, ${y}`, 10, 10, 100, 100);
+              // this number allow the text to be top of the screen and somewhat centered.
+              text(`${x}, ${y}`, 750, 55);
+              // filling the circle brown
+              fill('rgb(61, 36, 0)');
+              // creating a circle where the line begin, with a diameter of 50
+              // this help us see where the motion movement when the joystick tilting.
+              circle(x, y, 50);
               // This help creating the line tracker, by loggin the previous position and current position
               console.log(pX);
               // check to see if previous x position is 0 or not
@@ -172,23 +176,19 @@
 
             // Three helper functions for managing the serial connection.
             // from class example
-
             function setupSerial() {
               port = createSerial();
-
               // Check to see if there are any ports we have used previously
               let usedPorts = usedSerialPorts();
               if (usedPorts.length > 0) {
                 // If there are ports we've used, open the first one
                 port.open(usedPorts[0], BAUD_RATE);
               }
-
               // create a connect button
               connectBtn = createButton("Connect to Arduino");
               connectBtn.position(5, 5); // Position the button in the top left of the screen.
               connectBtn.mouseClicked(onConnectButtonClicked); // When the button is clicked, run the onConnectButtonClicked function
             }
-
             function checkPort() {
               if (!port.opened()) {
                 // If the port is not open, change button text
@@ -202,7 +202,6 @@
                 return true;
               }
             }
-
             function onConnectButtonClicked() {
               // When the connect button is clicked
               if (!port.opened()) {
@@ -270,23 +269,6 @@
 
           void loop() {
             // put your main code here, to run repeatedly:
-            // check to see if there is serial data
-            if (Serial.available() > 0) {
-              // read the serial data
-              int value = Serial.read();
-              // send the value back as raw binary data
-              Serial.write(value);
-              // Making the White LED blink
-              // turn on the White LED when there is data to parse
-              digitalWrite(pinW, HIGH);
-              // delay the LED on for 300 milliseconds
-              delay(300);
-              // turn the White LED off after 300 milliseconds
-              digitalWrite(pinW, LOW);
-            }
-            // delaying before moving forward to other code, avoid glitching.
-            delay(100);
-
             // This read the analog X values
             xVal = analogRead(x);
             // This read the analog Y values
@@ -367,6 +349,21 @@
               // turn the Red LED off by setting it as LOW
               digitalWrite(pinR, LOW);
             }
+            // check to see if there is serial data
+            if (Serial.available() > 0) {
+              // read the serial data
+              int value = Serial.read();
+              // send the value back as raw binary data
+              Serial.write(value);
+              // Making the White LED blink
+              // turn on the White LED when there is data to parse
+              digitalWrite(pinW, HIGH);
+              // delay the LED on for 300 milliseconds
+              delay(300);
+              // turn the White LED off after 300 milliseconds
+              digitalWrite(pinW, LOW);
+            }
+            // delaying before moving forward to other code, avoid glitching.delay(100);
 
             // Print the x value from analogRead() for x position to serial array
             Serial.print(xVal);
@@ -374,10 +371,6 @@
             Serial.print(", ");
             // Print the y value reading from analogRead() for y position to serial array
             Serial.println(yVal);
-
-            // Delaying for 10 millisecond to avoid glitching
-            delay(100);
-
           }
         </pre>
       </div>
@@ -387,22 +380,32 @@
       <div class="column">
         <div>
           <figure>
-            <h4>Operation: </h4>
-            <img src="A6_Operation.gif" width="auto" height="300"/>
-            <figcaption>This is an GIF showing the circuit breadboad in operation mode. A short replay clip of what the circuit does. This circuit was built using Arduino, breadboad, LEDs, resistors, and push button from our kit.</figcaption>
+            <h4>Webpage when first operate: </h4>
+            <img src="A6_Joystick_centered.jpeg" width="auto" height="300"/>
+            <figcaption>This image intend to display the image of webpage when it first operate, and when the joystick is in centered. The location of the circle is also centered the window size.</figcaption>
           </figure>
         </div>
         <div>
-          <h4>Voltage Chart</h4>
+          <h4>Webpage when Joystick in motion</h4>
           <figure>
-          <img src="A6_Webpage.jpg" width="auto" height="300"/>
-          <figcaption>The image display what the webpage show when the Circuit is in action. There is a coordinates value of (x, y) on the top left near the button say Disconnect. And in the big canvas there's a stroke line that display where the coordinates ranges on the canvas and stroke line displaying where the Joysitck've been.</figcaption>
+          <img src="A6_Joystick_tilt.jpeg" width="auto" height="300"/>
+          <figcaption>The image display what changes when the joystick tilted, for this image the joystick is tilted to the right, so the circle move to the right and the value on the page also change to reflect the coordinates of the circle.</figcaption>
           </figure>
         </div>
       </div>
-      <div>
-        <p> <br> For this project I have uses many reference to support me with the code for javascript: <a href="https://p5js.org/reference/p5/stroke/">Stroke line</a>, <a href="https://p5js.org/examples/animation-and-variables-drawing-lines/">Drawing lines</a>, <a href="https://p5js.org/tutorials/setting-up-your-environment/">Setting up my environment</a>, <a href="https://p5js.org/tutorials/variables-and-change/">Variable and changes</a>, <a href="https://www.toptal.com/developers/keycode">Key code</a>, <a href="https://p5js.org/reference/p5/keyIsDown/">KeyIsDown</a>. Not just that but I also uses example from class for the setting up serial, and declaring const of x, and y in Javascript using "rgb" example. And old example/homework from class: Blink to make LEDs blink for the serial available, and how to work with Joystick example done in class.
-        </p>
+      <div class="column">
+        <div>
+          <figure>
+            <h4>Operation: </h4>
+            <img src="A6_Operation.gif" width="auto" height="300"/>
+            <figcaption>This is an GIF showing the circuit breadboad in operation mode. A short replay clip of what the circuit does. This circuit was built using Arduino, breadboad, LEDs, resistors, and joystick from our kit.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <p> <br>For the operation, when the joystick is centered (which means no tilting) it will reflect to the webpage displaying the circle in the center of the screen. When the joystick tilt up, the Green LED will light up as well the circle will move upward from the center of the webpage. When the joystick tilt down, the Blue LED light up, and tthe circle move downward. Similarly to the left and right side; when the joystick tilt right the Yellow LED light up, the circle will move to the right. The Red LED will light up when the joystick tilt left, and the circle will also move toward the left side of the screen. When the circle move to a direction the value display will change corresponding to the coordinates of the circle on the page. Lastly, when the user pressed down the "ENTER" button on the keyboard, the White LED will light up for 300 milliseconds. The screen will responsive to the light and the button pressed by refreshing the circle to the centered of the screen.
+            <br> For this project I have uses many reference to support me with the code for javascript: <a href="https://p5js.org/reference/p5/stroke/">Stroke line</a>, <a href="https://p5js.org/examples/animation-and-variables-drawing-lines/">Drawing lines</a>, <a href="https://p5js.org/tutorials/setting-up-your-environment/">Setting up my environment</a>, <a href="https://p5js.org/tutorials/variables-and-change/">Variable and changes</a>, <a href="https://www.toptal.com/developers/keycode">Key code</a>, <a href="https://p5js.org/reference/p5/keyIsDown/">KeyIsDown</a>. Not just that but I also uses example from class for the setting up serial, and declaring const of x, and y in Javascript using "rgb" example. And old example/homework from class: Blink to make LEDs blink for the serial available, and how to work with Joystick example done in class.
+          </p>
+        </div>
       </div>
     </div>
 

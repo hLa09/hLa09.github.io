@@ -41,14 +41,14 @@ function draw() {
 
   // Convert each value from analogRead to a number, map it to the joystick range, and round to nearest integer
   // for example of serial passing in: 511, 509, then the value will be convert to the window's range
-  const x = round(map(Number(arr[0]), 0, 1023, windowWidth*0.5, windowWidth*0.75));
-  const y = round(map(Number(arr[1]), 0, 1023, windowHeight*0.5, windowHeight*0.75));
+  const x = round(map(Number(arr[0]), 0, 1023, 0, 1470));
+  const y = round(map(Number(arr[1]), 0, 1023, 0, 860));
   // text white
   fill('rgb(255, 255, 255)');
   // the size of the text display
   textSize(40);
   // Display text in order of x value, y value on the following coordinates of the window frame
-  text(`${x}, ${y}`, 750, 55);
+  text(`${x}, ${y}`, 735, 75);
   fill('rgb(61, 36, 0)');
   circle(x, y, 50);
   // This help creating the line tracker, by loggin the previous position and current position
