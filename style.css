@@ -91,7 +91,7 @@ pre {
 
 .grid {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
   gap: 5px;
   margin-top: 2em;
 }
@@ -181,6 +181,18 @@ pre {
 .row img {
   margin-top: 1em;
   align-items: center;
+}
+
+.center {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.center img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
 }
 
 /* #rotate { */
