@@ -9,7 +9,7 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1 class="title">Final Project:FanBot!</h1>
+    <h1 class="title">Final Project: FanBot!</h1>
 
     <div class="block">
       <figure>
@@ -18,7 +18,7 @@
       </figure>
       <div id="intro">
         <h3> Introduction: </h3>
-        <p>I want to build a robot that turn on fan when the surrounding becames hot/humidity, and display the temperature on the display screen. My ultimately goal is to be able to let use changes the speed of the fan when neccessary. <br> <br>
+        <p>I want to build a robot that turn on fan when the surrounding becames hot/humidity, and display the temperature on the display screen. My ultimately goal is to be able to let the user changes the speed of the fan when neccessary. <br> <br>
         For this assignment I plan to have the following materials:</p>
         <ul>
           <li>A Robot</li>
@@ -44,20 +44,113 @@
           </ul>
           <li>Remote</li>
           <ul>
-            <li>My ultimate goal is to alos have user being able to change the speed of the fan, so I plan to have remote being implemented in the project.</li>
-            <li> For say if the user want to control from afar they could.</li>
+            <li>My ultimate goal is to have user being able to change the speed of the fan, so I plan to have the remote control being implemented in the project.</li>
+            <li> For example if the user want to control from afar they could.</li>
             <li> That means I would need an IR receiver to detect the code from the remote.</li>
           </ul>
         </ul>
         <p> <br>For this assignment timeline:
           <ul>
-            <li> First week: Getting components connect correctly, and code neccessary</li>
-            <li>Second week: Finishing code and ensure all componet function properly,and to desire goal.</li>
-            <li> Third week: Finsihing up any remain unfinished and implementing low-mid profile of a robot prototype to complete the visualization.</li>
+            <li> First week: Getting components connecting properly, and code the program.</li>
+            <li>Second week: Finishing code and ensure all componet function properly to desire goal.</li>
+            <li> Third week: Finsihing up any remain unfinished/issues and implementing mid-profile of a robot prototype to complete the visualization.</li>
           </ul>
           <br><br>
-        <strong><big>Let look out for details!</big></strong></p>
+        <strong><big>Let's dive in!</big></strong></p>
       </div>
+    </div>
+    <!-- Schematics -->
+    <div class="row-column">
+      <div>
+        <h3>Schematic: </h3>
+        <p>....</p>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="FanBot_Circuit.jpg" width="auto" height="300"/>
+            <figcaption> Using Tinkercad, and image representative of components to compose a visualization of the circuit board in 2D version for an easier and clearer look of the schematics.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="FanBot_Schematic_Sketch.jpg" width="auto" height="300"/>
+            <figcaption> Skecthing image of the image to the left, this intended to represent the schematics of the circuit board.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <!-- Calculation, resistors, transistor, diode, capacitor explains -->
+    <div class="row-column">
+      <div>
+        <h4 id="row-content">Calculation, Resistors, Transistor, Diode, and Capacitor: </h4>
+        <p id="row-content"> For this assignment: there are three LEDs were being used, and other components like resistors (5 total), a transistor (MOSEFT), Diode rectifier, and 10uF capacitor.</p>
+        <ul>
+          <li>Calculation:</li>
+          <li>Formula: Volt = I (A) * R (omhs)</li>
+          <ul>
+            <li>LEDs:</li>
+            <li>Blue LED:</li>
+            <ul>
+              <li>Knowns: Blue LED has a voltage drop of 3.3V</li>
+              <li>Wants: to power with 5V, and the desire current flow is 20mA</li>
+              <li>V = I * R</li>
+              <li>5V = 20mA * R</li>
+              <li>5 - 3.3 = 0.02 * R</li>
+              <li>1.7 = 0.02 * R</li>
+              <li>R = 1.7/0.02 = 85 omhs</li>
+            </ul>
+            <li>Yellow LED:</li>
+            <li>Red LED:</li>
+          </ul>
+          <li>Resistors:</li>
+        <ul>
+          <li>Transistor:</li>
+            <ul>
+              <li>Is a active components that can use to control the flow of the current and amplify or switch electronic signal.</li>
+            </ul>
+          <li>Diode:</li>
+          <li>Capacitor:</li>
+        </ul>
+        <p> <br>Based on the information above.... </p>
+      </div>
+      <!-- Code uses -->
+      <div id="column-split">
+        <h4 id="row-content"> Code: </h4>
+        <p id="row-content">... </p>
+        <pre id="para-end">
+          ...
+        </pre>
+      </div>
+    </div>
+    <!-- Processes and Operation -->
+    <div class="row-column">
+      <div class="column">
+        <div>
+          <figure>
+            <h4>Operation: </h4>
+            <img src="A5_Operation.gif" width="auto" height="300"/>
+            <figcaption>...</figcaption>
+          </figure>
+        </div>
+      <div>
+        <h4>Serial print output sample</h4>
+        <figure>
+          <img src="A5_output_sample.png" width="auto" height="300"/>
+          <figcaption>...</figcaption>
+        </figure>
+      </div>
+    </div>
+    <!-- <div class="column"> -->
+      <!-- <div class="row"> -->
+        <!-- <figure> -->
+          <!-- <h4>Segment display: </h4> -->
+          <!-- <img src="A5_Graph.png" width="auto" height="300"/> -->
+          <!-- <figcaption>???</figcaption> -->
+        <!-- </figure> -->
+      <!-- </div> -->
+    <div>
+      <p> <br> ...</p>
     </div>
   </body>
 </html>
