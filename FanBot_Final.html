@@ -89,13 +89,13 @@
         <div>
           <figure>
             <img src="FanBot_Schematic_Circuit.jpg" width="auto" height="300"/>
-            <figcaption> Using Tinkercad to representing the components connection as a visualization of the circuit board in 2D version for an easier and clearer look of the circuit.</figcaption>
+            <figcaption> Fig 2: Using Tinkercad to representing the components connection as a visualization of the circuit board in 2D version for an easier and clearer look of the circuit.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="FanBot_Schematic_Sketch.jpg" width="auto" height="300"/>
-            <figcaption> The sketch of a circuit connection, this intended to represent the schematics of the circuit board.</figcaption>
+            <figcaption> Fig 3: The sketch of a circuit connection, this intended to represent the schematics of the circuit board.</figcaption>
           </figure>
         </div>
       </div>
@@ -506,73 +506,76 @@
 
       <div>
         <h4 id="row-content"> Wiring process</h4>
-        <p id="row-content">.....</p>
+        <p id="row-content">The following is the process of wires connection of each components that was implemented in the project.</p>
       </div>
 
       <!-- LEDs wiring -->
       <div class="block">
         <figure>
           <img src="LEDs_topview.jpg" width="auto" height="300">
-          <figcaption>....</figcaption>
+          <figcaption> Fig 4: LEDs connection for Blue, Yellow, and Red light on the circuit to Arduino board.</figcaption>
         </figure>
         <div id="intro">
           <h3>LEDs wiring</h3>
-          <p>Description....</p>
+          <p> The image to the left showing the connection for the LEDs: Blue, Yellow, and Red. Each of the LEDs has a corresponding colored-wires connect to the pin of the Arduino, and the black wires is the ground connection of the LEDs and the Arduino. <br> <br>
+          The Blue wire connect from the Blue LED to pin 2 of the Arduino. The Yellow wire connect from the Yellow LED to pin 3 of the Arduino. The Red wire connect from the Red LED to pin 4 of the Arduino.</p>
         </div>
       </div>
 
       <!-- DC motor -->
       <div >
         <h4 id="row-content">DC motor wiring</h4>
-        <p>....</p>
+        <p>The transistor gate connect to the pin 5 of the Arduino, and the source connect to the ground, which leaves the data connect to the black wire of the DC motor, then the red wire of the DC motor is connect to the power source. <br><br>
+        Although, I followed exactly how I did in Assignment 5, I still encounter whinning/noisy motor. Which cause the motor to not spin. Therefore I spend time learning how to tackle the issue. I learned that using the diode to prevent the inductive spike from the motor, and the capacitor to smooth out the noise from the motor. So to include them in the configuration I had, I change up wiring for the data pin as followed Figure 7.</p>
       </div>
       <div class="grid">
         <div>
           <figure>
             <img src="DCmotor_topview.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 5: Showing top view of wire connection of the DC motor to the Arduino.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="DCmotor_sideview.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 6: A closer look through sideview perspective of the wiring connection.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="DCmotor_closer_view.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 7: This show a closer look of how I tackle the whinning/noisy of the DC motor using the Diode, and the capacitor.</figcaption>
           </figure>
         </div>
       </div>
       <div class="block">
         <figure>
           <img src="Soldering_DCmotor_process.jpg" width="auto" height="300">
-          <figcaption>....</figcaption>
+          <figcaption> Fig 8: Documenting when I tackle the The DC motor wires is broken, I went and soldering the wires back on.</figcaption>
         </figure>
         <div id="intro">
           <h3>Encounter issue</h3>
-          <p>Description....</p>
+          <p>When I put the components together, I encounter issue that the wires went lose, and broke on me. <br><br>
+          [This is when I didn't encounter noisy motor: no diode, or capacitor] The components run with no issue, then the wires start to get lose and detach. So I tried to soldering the first time, and have the components running again without issue. However, when I continue to compose other components the motor begin to detach again after a few operations. So I end up soldering a few more time, and swap wires to ensure the length of the wires aren't too short. I then test the motor with other components again, this is when I encounter noisy motor and figure out how to tackle the noisy motor with diode, and capacitor.<br><br></p>
         </div>
       </div>
 
       <!-- DHT11 temperature and humidity -->
       <div >
         <h4 id="row-content">DHT11 Temperature and Humidity</h4>
-        <p>....</p>
+        <p> After figuring connecting the motor (the first time), I went on and connecting the DHT11, which only require three wires to connect them to the Arduino. The white wire connect to pin 8, the red wire connect to power of the Arduino, and the gray wire connect to the ground of the Arduino.</p>
       </div>
       <div class="content">
         <div>
           <figure>
             <img src="DHT11_topview.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 9: showing the topview of the DHT11 connection with the Arduino.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="DHT11_frontview.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 10: This show the DHT11 component, three wires (gray, red, and white) connects to the three pins of the DHT11.</figcaption>
           </figure>
         </div>
       </div>
@@ -580,25 +583,25 @@
       <!-- LCD 1602 module -->
       <div >
         <h4 id="row-content">LCD 1602 module</h4>
-        <p>....</p>
+        <p>For the LCD 1602 module, there is a lot of pins I need to learn how to connect. After </p>
       </div>
       <div class="grid">
         <div>
           <figure>
             <img src="LCD_frontview.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 11: </figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="LCD_wiring_topview.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 12: </figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="LCD_resistor_sideview.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 13: </figcaption>
           </figure>
         </div>
       </div>
@@ -612,13 +615,13 @@
         <div>
           <figure>
             <img src="IRreceiver_topview.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 14: </figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="IRreceiver_sideview.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 15: </figcaption>
           </figure>
         </div>
       </div>
@@ -630,7 +633,7 @@
       <div class="block">
         <figure>
           <img src="FanBot_nohead_components_integration.jpg" width="auto" height="300">
-          <figcaption>....</figcaption>
+          <figcaption> Fig 16: </figcaption>
         </figure>
         <div id="intro">
           <p>Description....</p>
@@ -640,13 +643,13 @@
         <div>
           <figure>
             <img src="Components_integration_1.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 17: </figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="Components_integration_2.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 18: </figcaption>
           </figure>
         </div>
       </div>
@@ -654,13 +657,13 @@
         <div>
           <figure>
             <img src="Components_integration_3.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 19: </figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="Components_integration_4.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 20: </figcaption>
           </figure>
         </div>
       </div>
@@ -673,13 +676,13 @@
         <div>
           <figure>
             <img src="FanBot_Detailed_visual.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 21: </figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="FanBot_Complete_visual.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 22: </figcaption>
           </figure>
         </div>
       </div>
@@ -694,15 +697,18 @@
         <div>
           <figure>
             <img src="FanBot_Operation.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 23: </figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="FanBot_Serial_Ouput.jpg" width="auto" height="300">
-            <figcaption>....</figcaption>
+            <figcaption> Fig 24: </figcaption>
           </figure>
         </div>
+      </div>
+      <div>
+        <p><br></p>
       </div>
     </div>
 
@@ -710,6 +716,7 @@
 
       <a id="previous" href="https://hla09.github.io/A6_Talking_to_the_web.html" class="previous round">&#8249; Previous Assignment</a>
       <a id="next" href="https://hla09.github.io/" class="next round">Home Page &#8250;</a>
+
     </footer>
 
   </body>
