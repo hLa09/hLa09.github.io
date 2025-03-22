@@ -196,6 +196,56 @@ pre {
   border-radius: 8pt;
 }
 
+
+#previous {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+#next {
+  text-decoration: none;
+  display: inline-block;
+  align-items: self-end;
+  padding: 8px 16px;
+}
+
+.next:hover {
+  border-style: solid;
+  border-color: #2377f4;
+  /* color: rgb(198, 218, 240); */
+}
+
+.previous:hover {
+  border-style: solid;
+  border-color: #2377f4;
+  /* color: rgb(198, 218, 240); */
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  margin-right: 10em;
+}
+
+.next {
+  background-color: #f1f1f1;
+  color: black;
+  margin-left: 10em;
+}
+
+.round {
+  border-radius: 8pt;
+}
+
+footer {
+  border-top: 2em;
+  text-align: center;
+  padding: 2px;
+  background-color: rgb(255, 250, 248);
+  color: white;
+}
+
 /* #rotate { */
   /* transform: rotate(270deg); */
   /* gap: 10px; */

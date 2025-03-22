@@ -59,35 +59,56 @@
         <strong><big>Let's dive in!</big></strong></p>
       </div>
     </div>
+
     <!-- Schematics -->
     <div class="row-column">
       <div>
-        <h3>Schematic: </h3>
-        <p>....</p>
+        <!-- <h3>Schematic: </h3> -->
+        <h4 id="row-content">Schematic</h4>
+        <p id="row-content">To tackle all the components that will be use in the project, first I want to ensure all the components are properly connect to the Arduino board, circuitboard, and to power without fearing that I will short circuit the components. <br>
+        <br> For each components in the project:
+        <ul>
+          <li>Components I am familiar with:</li>
+          <ul>
+            <li>DC motor: I have touch based on this in my Assignment 5, and additional information gained from learning how to deal with noisy/whinning sound from the <a href="https://www.pololu.com/docs/0J15/9">Pololu</a> site. </li>
+            <li>LEDs: I have touch on this in Assignment 1 and 2.</li>
+          </ul>
+          <li>Components that are new:</li>
+          <ul>
+            <li>DHT11: For this component I utilize the information learned from the following sites: <a href="https://www.circuitbasics.com/how-to-set-up-the-dht11-humidity-sensor-on-an-arduino/">CircuitBasics</a>, and <a href="https://projecthub.arduino.cc/arcaegecengiz/using-dht11-12f621#section5">Arduino Docs</a>.</li>
+            <li>IRreceiver: As for this I uses class slides, and the following sites <a href="https://www.circuitbasics.com/arduino-ir-remote-receiver-tutorial/">CircuitBasics</a>, and <a href="https://roboticsbackend.com/arduino-ir-remote-controller-tutorial-setup-and-map-buttons/">Robotics Back End</a> to incorporate the remote control.</li>
+            <li>LCD 1602 module: <a href="https://www.circuitbasics.com/how-to-set-up-an-lcd-display-on-an-arduino/">CircuitBasics</a>, <a href="https://docs.arduino.cc/learn/electronics/lcd-displays/#display-example">Arduino Docs</a> are all the sites that help me learn how to connect all the neccessary pins to power. To create custom characters I also use this site: <a href="https://omerk.github.io/lcdchargen/">Custom Character Generator 5x8 byte</a> to help display the character on LCD display to indicate the temperature and humidity.</li>
+            <li>Diode: This diode component is new, so I learn from the following: <a href="https://www.blikai.com/blog/what-is-a-1n4007-diode-and-how-is-it-used-in-circuits">blikai</a>, <a href="https://theengineeringmindset.com/the-basics-of-diodes-explained/">The engineering mindset</a> site, and class slides. <a href="https://www.exploringarduino.com/wp-content/uploads/2019/07/1N400X-datasheet.pdf">Datasheet.</a></li>
+            <li>Capacitor: From the <a href="https://www.pololu.com/docs/0J15/9">Pololu</a> site, and the video from <a href="https://theengineeringmindset.com/the-basics-of-diodes-explained/">The engineering mindset</a> guide me to utilize the capacitor to smooth out the noise coming from the DC motor.</li>
+          </ul>
+        </ul>
+        <br> The components I uses for the project has numerous of wires, it is a challenge to show them through images, so I use the TinkerCad site to help me visualize all the connection of all the components.
+        </p>
       </div>
       <div class="content">
         <div>
           <figure>
-            <img src="FanBot_Circuit.jpg" width="auto" height="300"/>
-            <figcaption> Using Tinkercad, and image representative of components to compose a visualization of the circuit board in 2D version for an easier and clearer look of the schematics.</figcaption>
+            <img src="FanBot_Schematic_Circuit.jpg" width="auto" height="300"/>
+            <figcaption> Using Tinkercad to representing the components connection as a visualization of the circuit board in 2D version for an easier and clearer look of the circuit.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="FanBot_Schematic_Sketch.jpg" width="auto" height="300"/>
-            <figcaption> Skecthing image of the image to the left, this intended to represent the schematics of the circuit board.</figcaption>
+            <figcaption> The sketch of a circuit connection, this intended to represent the schematics of the circuit board.</figcaption>
           </figure>
         </div>
       </div>
     </div>
+
     <!-- Calculation, resistors, transistor, diode, capacitor explains -->
     <div class="row-column">
       <div>
-        <h4 id="row-content">Calculation, Resistors, Transistor, Diode, and Capacitor: </h4>
-        <p id="row-content"> For this assignment: there are three LEDs were being used, and other components like resistors (5 total), a transistor (MOSEFT), Diode rectifier, and 10uF capacitor.</p>
+        <h4 id="row-content">Calculation, Resistors, and Transistor </h4>
+        <p id="row-content"> For this assignment: there are three LEDs were being used, and other components like resistors (5 total), a transistor (MOSFET), Diode rectifier, and 10uF capacitor.</p>
         <ul>
           <li>Calculation:</li>
-          <li>Formula: Volt = I (A) * R (omhs)</li>
+          <li>Using this formula: Volt = I (A) * R (omhs)</li>
           <ul>
             <li>LEDs:</li>
             <li>Blue LED:</li>
@@ -101,56 +122,595 @@
               <li>R = 1.7/0.02 = 85 omhs</li>
             </ul>
             <li>Yellow LED:</li>
+            <ul>
+              <li>Knowns: Yellow LED has a voltage drop of 1.8V</li>
+              <li>Wants: to power with 5V, and the desire current flow is 20mA</
+            li>
+              <li>V = I * R</li>
+              <li>5V = 20mA * R</li>
+              <li>5 - 1.8 = 0.02 * R</li>
+              <li>3.2 = 0.02 * R</li>
+              <li>R = 3.2/0.02 = 160 omhs</li>
+            </ul>
             <li>Red LED:</li>
+            <ul>
+              <li>Knowns: Red LED has a voltage drop of 1.8V</li>
+              <li>Wants: to power with 5V, and the desire current flow is 20mA</
+            li>
+              <li>V = I * R</li>
+              <li>5V = 20mA * R</li>
+              <li>5 - 1.8 = 0.02 * R</li>
+              <li>3.2 = 0.02 * R</li>
+              <li>R = 3.2/0.02 = 160 omhs</li>
+            </ul>
           </ul>
-          <li>Resistors:</li>
-        <ul>
+          <li>Resistors: Based on the calculation above, I use three resistors each of 220 ohms. Since the yellow and red LED require a 160 ohms resistor to meet the desire amps, in the kit I have a 220 ohms and decided to used them for all three LEDs instead using a different one for the blue LED. Aside from the LEDs, there are two more resistor that were used for the LCD 1602 module. The resistor I decide to use for the LCD display were 220 ohms as well, because ...</li>
           <li>Transistor:</li>
             <ul>
               <li>Is a active components that can use to control the flow of the current and amplify or switch electronic signal.</li>
             </ul>
-          <li>Diode:</li>
-          <li>Capacitor:</li>
         </ul>
-        <p> <br>Based on the information above.... </p>
       </div>
       <!-- Code uses -->
-      <div id="column-split">
+      <div>
         <h4 id="row-content"> Code: </h4>
-        <p id="row-content">... </p>
-        <pre id="para-end">
-          ...
+        <p id="row-content">To operate the components I use the following code: </p>
+        <pre>
+          // This program intend to use DHT11 to detect the surrounding
+          // temperature and humidity and then display them to the LCD 1602
+          // module, a screen display of 16x2 screen. The information to be
+          // printed will be temperature in Fahrenheit, humidity in percentage,
+          // and speed of the fan is running at certain temperature. This program
+          // will depend on the temperature that is being detect to spin the DC
+          // motor with the Fan attach to the component. If the fan isn't spin at
+          // the satisfied speed the user can increase and decrease the speed to
+          // their liking. To increase the speed the user will use the remote
+          // control, information detected will parse through the IRreceiver
+          // implemented in the FanBot.
+
+          // Sources that I use to compile the program:
+          // From circuitbasics.com - using for LCD 1602 module, DHT11, and IRreceiver
+          // LCD 1602 module: https://www.circuitbasics.com/how-to-set-up-an-lcd-display-on-an-arduino/
+          // DHT11: https://www.circuitbasics.com/how-to-set-up-the-dht11-humidity-sensor-on-an-arduino/
+          // IRreceiver: https://www.circuitbasics.com/arduino-ir-remote-receiver-tutorial/
+          // From Arudino Docs - using for LCD 1602 module, and DHT11
+          // LCD 1602 module: https://docs.arduino.cc/learn/electronics/lcd-displays/#display-example
+          // DHT11: https://projecthub.arduino.cc/arcaegecengiz/using-dht11-12f621#section5
+          // From Roboticsbackend.com - IRreceiver
+          // IRreceiver: https://roboticsbackend.com/arduino-ir-remote-controller-tutorial-setup-and-map-buttons/
+          // For the custom bytes characters 5x8 pixels: https://omerk.github.io/lcdchargen/
+          // Additional source was the class's slides.
+
+          // Libraries to be import
+          // include library for DHT11 Temperature and Humidity sensor
+          #include "<"dht.h">"
+          // inlcude library for IRreceiver for remote control
+          #include "<"IRremote.h">"
+          // include library for LCD 1602 module
+          #include "<"LiquidCrystal.h">"
+
+          // DHT11 temperature and humidity initializing dht object to DHT naming
+          dht DHT;
+          // Initializing dht pin connection to the Arduino board
+          #define DHT11_PIN 8
+
+          // Defining the IRreceiver pin connect to the Arduino
+          #define IR_RECEIVE_PIN 13
+
+          // Declare the variable for each button of the remote control Each of
+          // the button on the remote control has specific code, when decode each
+          // of the button using the IRreceiver there is a number correspond to
+          // the button. By declaring them will allow us to utilizing them in the program.
+          // In my case the number 9 correspond with the button has a arrow pointing up.
+          #define IR_BUTTON_INC 9
+          // In my case the number 7 correspond with the button has a arrow pointing down.
+          #define IR_BUTTON_DEC 7
+          // In my case the number 69 correspond with the power button (on/off).
+          #define IR_BUTTON_ON_OFF 69
+
+          // Motor pin connect to pin 3 on the Arduino
+          const int motorpin = 5;
+          // creating variable to store the speed in which the motor spin
+          int speed = 0;
+
+          // creating LCD 1602 module
+          // Declaring the LCD pins connection to the Arduino RS, E, D4, D5, D6,
+          // D7. Declaring variable that stay constant throughout the program for LCD
+          // Initialize LCD Register select pin connect to pin 6 on the Arduino
+          const int RS = 6;
+          // Initialize LCD Enable pin connect to pin 7 on the Arduino
+          const int E = 7;
+          // Initialize LCD data pin 11 (D4) connect to pin 9 on the Arduino
+          const int D4 = 9;
+          // Initialize LCD data pin 12 (D5) connect to pin 10 on the Arduino
+          const int D5 = 10;
+          // Initialize LCD data pin 13 (D6) connect to pin 11 on the Arduino
+          const int D6 = 11;
+          // Initialize LCD data pin 14 (D7) connect to pin 12 on the Arduino
+          const int D7 = 12;
+          // Passing the LCD declared variables as parameter to the LCD object
+          // LCD 1602 module object takes 6 parameters, in the order of: RS, E, D4, D5, D6, D7
+          LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
+
+          // Creating custom character to display on the LCD module. Since the
+          // LCD module will displaying the temperature and the humidity the will
+          // be detected.
+          // There will be character for thermometer
+          byte thermometer[8] = {
+            0b00100,
+            0b01010,
+            0b01010,
+            0b01110,
+            0b01110,
+            0b11111,
+            0b11111,
+            0b01110
+          };
+          // There will be character for the degree of the temperature
+          byte degree[8] = {
+            0b00110,
+            0b01001,
+            0b01001,
+            0b00110,
+            0b00000,
+            0b00000,
+            0b00000,
+            0b00000
+          };
+          // The water droplet character is to represent the humidity.
+          byte drop[8] = {
+            0b00100,
+            0b00100,
+            0b01010,
+            0b01010,
+            0b10001,
+            0b10001,
+            0b10001,
+            0b01110
+          };
+
+          // LED that connect to the pin on the Arduino
+          // Blue LED connect to pin 2
+          const int pinB = 2;
+          // Yellow LED connect to pin 3
+          const int pinY = 3;
+          // Red LED connect to pin 4
+          const int pinR = 4;
+
+          // This function run once,
+          // and act like a motor of the program, while run code in order.
+          void setup() {
+            // Setting the speed of the Serial Communication
+            Serial.begin(9600);
+            // Start the IRreceiver with the connect pin that connect to the Arduino
+            IrReceiver.begin(IR_RECEIVE_PIN);
+            // Setting up the LCD module column and rows
+            lcd.begin(16,2);
+            // LED pinMode setup as OUTPUT
+            // Set the Blue LED pin as OUTPUT
+            pinMode(pinB, OUTPUT);
+            // Set the Yellow LED pin as OUTPUT
+            pinMode(pinY, OUTPUT);
+            // Set the Red LED pin as OUTPUT
+            pinMode(pinR, OUTPUT);
+
+            // Creting new character symbol for the temperature
+            lcd.createChar(0, thermometer);
+            // Creating new character symbol to identify the number as degree
+            lcd.createChar(1, degree);
+            // Creating new character symbol for the humidity
+            lcd.createChar(2, drop);
+
+            // Setting the cursor to the top left index column 0 and row 0
+            lcd.setCursor(0,0);
+            // print the message from the index created
+            lcd.print("Today's Temp: ");
+
+            // Setting the motor begin in an off state as 0 speed.
+            analogWrite(motorpin, 0);
+          }
+
+          // This function run continuosly until changes
+          void loop() {
+            // reading the DHT11 sensor for the temperature and humidity
+            int chk = DHT.read11(DHT11_PIN);
+            // Note: for the range of temperature, 0-50 Celsius is reading vs Fahrenheit
+            // Cold temp: 0-15 Celsius -> 32-59 Fahrenheit
+            // Warm temp: 16-25 Celsius -> 60.8-77 Fahrenheit
+            // Hot temp: 26 - 50 Celsius -> 78.8-122 Fahrenheit
+            // Conversion temp from Celsius to Fahrenheit:
+            // F = (C*1.8) + 32
+            // Setting minimum warm value (when the fan spin at min) for the range in Celsius
+            int min = 20;
+            // Setting maximum hot value (when the fan spin at max) for the range in Celsius
+            int max = 50;
+            // Creating variable for Celsius temp getting from the DHT11 reading
+            int Ctemp = DHT.temperature;
+            // Creating variable for Fahrenheit temp through conversion using Celsius temp
+            int Ftemp = (Ctemp * 1.8) + 32;
+            // Creating value to store humidity percentage, reading from the DHT11
+            int humidity = DHT.humidity;
+
+            // Creating a speed value for the DC motor, using map function. The
+            // speed of the motor is depend on the temperature reading, the range
+            // is set from 20-50, at 20 C it is cool to warm which the fan does
+            // not need to spin, this is minimum = speed is 0. While temperature
+            // getting higher then min the fan start to spin, up to the maximum
+            // speed 255, that's whent he temp is at 50 C.
+            speed = map(Ctemp, min, max, 0, 255);
+            // Making the motor spin at the speed mapped
+            // having this here the motor spin
+            // without having to waiting for the signal from the IRreceiver
+            analogWrite(motorpin, speed);
+
+            // LED cases: when the each LED should be turn on. The Blue LED
+            // will turn on when the temperature is cold/cool. The Yellow LED will
+            // turn on when the temperature is cool-warm. The Red LED will turn on
+            // when the temperature reach hot temp. Based on the note above, I am
+            // using Celsius value to comparing the cold, warm, and hot. As they
+            // are nicer value to use.
+            // Checking the Celsius temperature is in the range of Cold: 0 to 15 Celsius inclusive
+            if (Ctemp >= 0 && Ctemp <= 15) {
+              // Making the Blue light (LED) turn on when the temperature in range Cold
+              digitalWrite(pinB, HIGH);
+              // Turn off the Yellow light (LED)
+              digitalWrite(pinY, LOW);
+              // Turn off the Red light (LED)
+              digitalWrite(pinR, LOW);
+            }
+            // Checking the Celsius temperature is in the range of Cool/Warm: 16 to 25 Celsius inclusive
+            else if (Ctemp >= 16 && Ctemp <= 25) {
+              // Turn off the Blue light (LED)
+              digitalWrite(pinB, LOW);
+              // Making the Yellow light (LED) turn on when the temperature in range Cool/Warm
+              digitalWrite(pinY, HIGH);
+              // Turn off the Red Light (LED)
+              digitalWrite(pinR, LOW);
+            }
+            // When the Celsius does not fall in Cold or Cool/Warm range, it is in Hot range
+            // which cover 27 to 50 Celsius temperature
+            else {
+              // Turn off the Blue light (LED)
+              digitalWrite(pinB, LOW);
+              // Turn off the Yellow light (LED)
+              digitalWrite(pinY, LOW);
+              // Making the Red light (LED) turn on when the temperature in range Hot
+              digitalWrite(pinR, HIGH);
+            }
+
+            // IRreceiver checking cases for the button
+            // Checking whether the IRreceiver is available, when receiver is available decode it.
+            if (IrReceiver.decode()) {
+              // call IrReceiver.resume() so that the sensor will continue read data
+              IrReceiver.resume();
+              // Decoding the result receiver from the receiver
+              int command = IrReceiver.decodedIRData.command;
+              // This line were use prior the switch operation is used. To
+              // identify the numerical for the button. Once the button numerical
+              // is identify this line is to be commented.
+              // Print value of the button to serial output
+              // Serial.println(command);
+              // Switching command use when the button is pressed, switching
+              // between states. When the increase button pressed the speed of the
+              // fan increase, opposing from the increase button - when the
+              // decrease button is pressed the speed of the fan is decrement by
+              // 5. Addition there is an on and off button creates, which when the
+              // motor is in an on state the speed will be 0, means off, and when
+              // is at 0, turn its on.
+              switch(command) {
+                // When the increase button is detected by the IRreceiver (being pressed)
+                case IR_BUTTON_INC: {
+                  // Check if the speed is not already at max
+                  if (speed != 255) {
+                    // Increase the speed by 5
+                    speed = speed + 5;
+                    // Making the motor spin at the speed after inncreasing the speed
+                    analogWrite(motorpin, speed);
+                  }
+                  break;
+                }
+                // When the decrease button is detected by the IRreceiver (being pressed)
+                case IR_BUTTON_DEC: {
+                  // Check if the speed is not zero, at min, means the motor is in an off state
+                  if (speed != 0) {
+                    // Lower the spin rate by decrease the speed by 5
+                    speed = speed - 5;
+                    // Making the motor spin at the speed after lowering the speed
+                    analogWrite(motorpin, speed);
+                  }
+                  break;
+                }
+                // When the on/off button is read by the IRreceiver, check the following steps
+                case IR_BUTTON_ON_OFF: {
+                  // Checking which state the motor is current at, and do the opposite
+                  // When speed is greater than 0, means the fan is on
+                  if (speed > 0) {
+                    // Turn off the fan by making the speed equal to 0
+                    analogWrite(motorpin, 0);
+                  }
+                  // When speed is 0, mean when motorpin isn't spinning
+                  else {
+                    // Turn on the fan by spinning the motor at the speed depend on the temperature
+                    analogWrite(motorpin, speed);
+                  }
+                  break;
+                }
+                // When none of the case is detected (being used)
+                default: {
+                // Make the motor spin at default state, means by the temperature detected speed
+                  analogWrite(motorpin, speed);
+                }
+              }
+            }
+            // Delay 100 millliseconds to avoid glitching
+            delay(100);
+
+            // Printing the information to the LCD 1602 module
+            // Setting the cursor at index 0 of column and 1 of row,
+            // beign write at the bottom row.
+            lcd.setCursor(0, 1);
+            // Start out by input the symbol for the thermometer
+            // lcd.write() function take in byte, and byte at 0 is the created to be thermometer symbol.
+            lcd.write(byte(0));
+            // Follow the thermometer symbol, print out the temperature in Fahrenheit
+            // I'm printing the Fahrenheit temperature value to the LCD display,
+            // because I am more familiar with reading the weather in Fahrenheit value.
+            lcd.print(Ftemp);
+            // Print out the symbol for the degree to indicate the value prior its a degree temp.
+            // lcd.write() function take in byte, and byte at 1 is the created to be degree symbol.
+            lcd.write(1);
+            // Then print out the letter F to indicate the temperature is in Fahrenheit instead of Celsius.
+            lcd.print("F");
+            // Set the cursor at the next starting index to write new information
+            // Begin on the bottom row (1), at index column 6
+            lcd.setCursor(6,1);
+            // Write out the symbol from byte 2, a water droplet to indicate the humidity reading
+            lcd.write(2);
+            // Print out the humidity percentage value
+            lcd.print(humidity);
+            // Print the percentage symbol to indicate the prior value is in percentage.
+            lcd.print("%");
+            // Set the cursor at the next starting index to write new information
+            // Begin on the bottom row (1), at index column 11
+            lcd.setCursor(11,1);
+            // Printing "S" as s speed symbol to see what speed the DC motor is running at
+            lcd.print("S:");
+            // Print the speed as a value after the symbol is indicated
+            lcd.print(speed);
+            // Delay for 1000 milliseconds to avoid glitching
+            delay(1000);
+
+            // Print the information to Serial output to check the information
+            // Printed to the LCD is matched.Print the information as follow:
+            // Temp: #F | Humidity: #% | Speed: #
+            // Print the "Temp:" indicate temperature
+            Serial.print("Temp: ");
+            // Print the temperature in Fahrenheit, after convert from Celsius
+            Serial.print(Ftemp);
+            // Print the "F" for Fahrenheit and separation line for "Humidity:" indication for humidity
+            Serial.print("F | Humidity: ");
+            // Print the humidity value
+            Serial.print(humidity);
+            // Print the "%" for the humidity percentage, and seoaration line
+            // and the "Speed:" indication for DC motor spin speed
+            Serial.print("% | Speed: ");
+            // Print the spin speed value of the DC motor
+            Serial.println(speed);
+          }
         </pre>
       </div>
     </div>
-    <!-- Processes and Operation -->
-    <div class="row-column">
-      <div class="column">
+
+    <!-- Wiring process -->
+     <div class="row-column">
+
+      <div>
+        <h4 id="row-content"> Wiring process</h4>
+        <p id="row-content">.....</p>
+      </div>
+
+      <!-- LEDs wiring -->
+      <div class="block">
+        <figure>
+          <img src="LEDs_topview.jpg" width="auto" height="300">
+          <figcaption>....</figcaption>
+        </figure>
+        <div id="intro">
+          <h3>LEDs wiring</h3>
+          <p>Description....</p>
+        </div>
+      </div>
+
+      <!-- DC motor -->
+      <div >
+        <h4 id="row-content">DC motor wiring</h4>
+        <p>....</p>
+      </div>
+      <div class="grid">
         <div>
           <figure>
-            <h4>Operation: </h4>
-            <img src="A5_Operation.gif" width="auto" height="300"/>
-            <figcaption>...</figcaption>
+            <img src="DCmotor_topview.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
           </figure>
         </div>
-      <div>
-        <h4>Serial print output sample</h4>
+        <div>
+          <figure>
+            <img src="DCmotor_sideview.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="DCmotor_closer_view.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="block">
         <figure>
-          <img src="A5_output_sample.png" width="auto" height="300"/>
-          <figcaption>...</figcaption>
+          <img src="Soldering_DCmotor_process.jpg" width="auto" height="300">
+          <figcaption>....</figcaption>
         </figure>
+        <div id="intro">
+          <h3>Encounter issue</h3>
+          <p>Description....</p>
+        </div>
+      </div>
+
+      <!-- DHT11 temperature and humidity -->
+      <div >
+        <h4 id="row-content">DHT11 Temperature and Humidity</h4>
+        <p>....</p>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="DHT11_topview.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="DHT11_frontview.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- LCD 1602 module -->
+      <div >
+        <h4 id="row-content">LCD 1602 module</h4>
+        <p>....</p>
+      </div>
+      <div class="grid">
+        <div>
+          <figure>
+            <img src="LCD_frontview.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="LCD_wiring_topview.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="LCD_resistor_sideview.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- IRreceiver -->
+      <div >
+        <h4 id="row-content">IRreceiver</h4>
+        <p>....</p>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="IRreceiver_topview.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="IRreceiver_sideview.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Components integration views -->
+      <div >
+        <h4 id="row-content">Components integration views</h4>
+      </div>
+      <div class="block">
+        <figure>
+          <img src="FanBot_nohead_components_integration.jpg" width="auto" height="300">
+          <figcaption>....</figcaption>
+        </figure>
+        <div id="intro">
+          <p>Description....</p>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="Components_integration_1.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="Components_integration_2.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="Components_integration_3.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="Components_integration_4.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+      </div>
+      <!-- Final Visual -->
+      <div >
+        <h4 id="row-content">Final visualization</h4>
+        <p>....</p>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="FanBot_Detailed_visual.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="FanBot_Complete_visual.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+      </div>
+     </div>
+
+    <div class="row-column">
+      <div>
+        <h4 id="row-content"> Operation Process</h4>
+        <p id="row-content">.....</p>
+      </div>
+      <div class="content">
+        <div>
+          <figure>
+            <img src="FanBot_Operation.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="FanBot_Serial_Ouput.jpg" width="auto" height="300">
+            <figcaption>....</figcaption>
+          </figure>
+        </div>
       </div>
     </div>
-    <!-- <div class="column"> -->
-      <!-- <div class="row"> -->
-        <!-- <figure> -->
-          <!-- <h4>Segment display: </h4> -->
-          <!-- <img src="A5_Graph.png" width="auto" height="300"/> -->
-          <!-- <figcaption>???</figcaption> -->
-        <!-- </figure> -->
-      <!-- </div> -->
-    <div>
-      <p> <br> ...</p>
-    </div>
+
+    <footer>
+
+      <a id="previous" href="https://hla09.github.io/A6_Talking_to_the_web.html" class="previous round">&#8249; Previous Assignment</a>
+      <a id="next" href="https://hla09.github.io/" class="next round">Home Page &#8250;</a>
+    </footer>
+
   </body>
 </html>
