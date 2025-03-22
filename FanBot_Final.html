@@ -144,7 +144,7 @@
               <li>R = 3.2/0.02 = 160 omhs</li>
             </ul>
           </ul>
-          <li>Resistors: Based on the calculation above, I use three resistors each of 220 ohms. Since the yellow and red LED require a 160 ohms resistor to meet the desire amps, in the kit I have a 220 ohms and decided to used them for all three LEDs instead using a different one for the blue LED. Aside from the LEDs, there are two more resistor that were used for the LCD 1602 module. The resistor I decide to use for the LCD display were 220 ohms as well, because ...</li>
+          <li>Resistors: Based on the calculation above, I use three resistors each of 220 ohms. Since the yellow and red LED require a 160 ohms resistor to meet the desire amps, in the kit I have a 220 ohms and decided to used them for all three LEDs instead using a different one for the blue LED. Aside from the LEDs, there are two more resistor that were used for the LCD 1602 module. The resistor I decide to use for the LCD display were 220 ohms as well, after reading the Circuit Basics sites and testing the level of brightness the LCD 1602 module displaying using 220ohms.</li>
           <li>Transistor:</li>
             <ul>
               <li>Is a active components that can use to control the flow of the current and amplify or switch electronic signal.</li>
@@ -583,25 +583,45 @@
       <!-- LCD 1602 module -->
       <div >
         <h4 id="row-content">LCD 1602 module</h4>
-        <p>For the LCD 1602 module, there is a lot of pins I need to learn how to connect. After </p>
+        <p>For the LCD 1602 module, there is a lot of pins I need to learn how to connect. After reading through the Circuit Site, and The Arduino Docs I begin the wiring along. <br><br>
+        There are 16 pins on the LCD 1602 module, I utilized up to 12 pins:
+        <ul>
+          <li>GND: connect to ground, black wire.</li>
+          <li>VCC: connect to power, red wire.</li>
+          <li>V0: Brightness pin connect to resistor (220 ohms), which connect to ground.</li>
+          <li>RS: Register select pin connect to pin 6, yellow wire.</li>
+          <li>RW: Read/Write select pin connect to ground.</li>
+          <li>E: Operating (read/write) enable pin connect to pin 7, green wire.</li>
+          <li>D0: Data pin did not use</li>
+          <li>D1: Data pin did not use</li>
+          <li>D2: Data pin did not use</li>
+          <li>D3: Data pin did not use</li>
+          <li>D4: Data pin connect to pin 9, blue wire.</li>
+          <li>D5: Data pin connect to pin 10, white wire.</li>
+          <li>D6: Data pin connect to pin 11, orange wire.</li>
+          <li>D7: Data pin connect to pin 12, purple wire.</li>
+          <li>A: Anode backlight pin connect to resistor (220 ohms), which connect to power, gray wire.</li>
+          <li>K: Cathode backlight connect to ground, black wire.</li>
+        </ul>
+        </p>
       </div>
       <div class="grid">
         <div>
           <figure>
             <img src="LCD_frontview.jpg" width="auto" height="300">
-            <figcaption> Fig 11: </figcaption>
+            <figcaption> Fig 11: Showing the wiring connection on the LCD 1602 module.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="LCD_wiring_topview.jpg" width="auto" height="300">
-            <figcaption> Fig 12: </figcaption>
+            <figcaption> Fig 12: Showing the wiring connection on the Ardruino board.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="LCD_resistor_sideview.jpg" width="auto" height="300">
-            <figcaption> Fig 13: </figcaption>
+            <figcaption> Fig 13: A closer look at the resistor for the LCD 1602 module connection.</figcaption>
           </figure>
         </div>
       </div>
@@ -609,19 +629,19 @@
       <!-- IRreceiver -->
       <div >
         <h4 id="row-content">IRreceiver</h4>
-        <p>....</p>
+        <p>This component has been taught in class, which I search back to classes slides and uses external sources (mention above). There's only three pins on the IRreceiver, label as G, R, Y. Each connect to a certain pin, The G connect to ground, the R connect to power, and the Y connect to pin 13.</p>
       </div>
       <div class="content">
         <div>
           <figure>
             <img src="IRreceiver_topview.jpg" width="auto" height="300">
-            <figcaption> Fig 14: </figcaption>
+            <figcaption> Fig 14: A closer look at the pin on the IRreceiver, Ground is orange wire, the Power is the yellow wire, and the Data pin is green wire.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="IRreceiver_sideview.jpg" width="auto" height="300">
-            <figcaption> Fig 15: </figcaption>
+            <figcaption> Fig 15: There are too much wire connect to the Arduino, so this a closer look on the wire connecting to the Arduino. Green wire connect to pin 13.</figcaption>
           </figure>
         </div>
       </div>
@@ -633,23 +653,23 @@
       <div class="block">
         <figure>
           <img src="FanBot_nohead_components_integration.jpg" width="auto" height="300">
-          <figcaption> Fig 16: </figcaption>
+          <figcaption> Fig 16: A picture of the project after implementing all the components into the robot Mid-profile.</figcaption>
         </figure>
         <div id="intro">
-          <p>Description....</p>
+          <p>When I implemented the components into the robot, I ensure the based is secure and must have hole to the side to connect the wires. When proceed on having all the components in secure and hidden inside the robot, I realized the LEDs is placed on the circuit board which is seem to be deep inside the robot body (Figure 16). which makes it challenge to display them as I want to. So I decide to make a few teaks to allow some lights display when it's operate (Figure 21). As for the other components they much of a challenge to secure them and hide them within the robot, the Figure 17 so the sideview of the components placement. Figure 18 showing a topview, and Figure 19 and 20 showing the process of the lid for the DC motor, IRreceiver, and LCD 1602 module, and how the DHT11 is secure.</p>
         </div>
       </div>
       <div class="content">
         <div>
           <figure>
             <img src="Components_integration_1.jpg" width="auto" height="300">
-            <figcaption> Fig 17: </figcaption>
+            <figcaption> Fig 17: A front view of DC motor, LCD 1602 module, and the IRreceiver being place in the robot.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="Components_integration_2.jpg" width="auto" height="300">
-            <figcaption> Fig 18: </figcaption>
+            <figcaption> Fig 18: A topview of the DC motor, LCD 1602 module, IRreceiver and remain components being implemented inside the robot.</figcaption>
           </figure>
         </div>
       </div>
@@ -657,32 +677,32 @@
         <div>
           <figure>
             <img src="Components_integration_3.jpg" width="auto" height="300">
-            <figcaption> Fig 19: </figcaption>
+            <figcaption> Fig 19: Progress on the components implemented, showing a lid for the LCD 1602 module, and IR receiver being hidden.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="Components_integration_4.jpg" width="auto" height="300">
-            <figcaption> Fig 20: </figcaption>
+            <figcaption> Fig 20: Progressing on the components implementing. The motor, LCD, IRreceiver is now complete hidden, which displaying the DHT11 securing placement.</figcaption>
           </figure>
         </div>
       </div>
       <!-- Final Visual -->
       <div >
         <h4 id="row-content">Final visualization</h4>
-        <p>....</p>
+        <p>After securing the components, I went ahead and finishing up the loof for the robot, which is hollow inside. I decided to added a placement for the remote control when they are not being used. I remove the blocks that covered the LEDs turns them to a small basket, attach them near the LEDs height. Which end up covering the hole I had to carve out for the IRreceiver. This covering is perfect because when the remote not being used, I don't have to worry about the oddly looking hole. However, when the remote being used I get to see where I should appoint the remote to. This allow the connect to the sensor being detect easily. View figure 21, and Figure 22.</p>
       </div>
       <div class="content">
         <div>
           <figure>
             <img src="FanBot_Detailed_visual.jpg" width="auto" height="300">
-            <figcaption> Fig 21: </figcaption>
+            <figcaption> Fig 21: Annotated details of where the components is being hidden on the robot.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="FanBot_Complete_visual.jpg" width="auto" height="300">
-            <figcaption> Fig 22: </figcaption>
+            <figcaption> Fig 22: A completed visual of the robot, as well as the placement for the remote when not being used.</figcaption>
           </figure>
         </div>
       </div>
@@ -691,19 +711,20 @@
     <div class="row-column">
       <div>
         <h4 id="row-content"> Operation Process</h4>
-        <p id="row-content">.....</p>
+        <p id="row-content">Once all the components is being put together, I made a little demo on how it will operate. There are a few success I made which serve the intent of the robot: The fan is running after a few trial and errors, the LEDs turn on according to the temperature its detecting, the LCD displaying the information wanted, and the IRreceiver is detecting nicely. However, to every success there are obstacles I still need to figure out in the future. Due to time constraint and limited background on IRreceiver, I could not have the remote control the fan solely - means I couldn't have them increase the speed of the fan and stays at the increase state, or when decreasing. The on and off button doesn't goes as intented, too. This only meant that when I revisit the project and updating them, I would look into how to control the DC motor with remote control to the desire goal. <br><br>
+        With the operating video, one small issue that I could not capture the temperature drop low enough so that the Blue LED can turn on. The best I can do is the temperature drop below 70 degree F, though this still in range of the Yellow LED light.</p>
       </div>
       <div class="content">
         <div>
           <figure>
             <img src="FanBot_Operation.jpg" width="auto" height="300">
-            <figcaption> Fig 23: </figcaption>
+            <figcaption> Fig 23: A demo of how the robot is operating. Light changes, and LCD changes when senors is detecting signals which effect the motor's speed.</figcaption>
           </figure>
         </div>
         <div>
           <figure>
             <img src="FanBot_Serial_Ouput.jpg" width="auto" height="300">
-            <figcaption> Fig 24: </figcaption>
+            <figcaption> Fig 24: A sample of the Serial output printing the temperature, humidity, and speed of the fan. This intended to check whether the display values on the LCD is matched.</figcaption>
           </figure>
         </div>
       </div>
