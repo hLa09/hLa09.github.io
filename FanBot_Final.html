@@ -338,6 +338,8 @@
             // getting higher then min the fan start to spin, up to the maximum
             // speed 255, that's whent he temp is at 50 C.
             speed = map(Ctemp, min, max, 0, 255);
+            // Limit the sensor value between 0 to 255
+            speed = constrain(speed, 0, 255);
             // Making the motor spin at the speed mapped
             // having this here the motor spin
             // without having to waiting for the signal from the IRreceiver
@@ -713,11 +715,15 @@
         <h4 id="row-content"> Operation Process</h4>
         <p id="row-content">Once all the components is being put together, I made a little demo on how it will operate. There are a few success I made which serve the intent of the robot: The fan is running after a few trial and errors, the LEDs turn on according to the temperature its detecting, the LCD displaying the information wanted, and the IRreceiver is detecting nicely. However, to every success there are obstacles I still need to figure out in the future. Due to time constraint and limited background on IRreceiver, I could not have the remote control the fan solely - means I couldn't have them increase the speed of the fan and stays at the increase state, or when decreasing. The on and off button doesn't goes as intented, too. This only meant that when I revisit the project and updating them, I would look into how to control the DC motor with remote control to the desire goal. <br><br>
         With the operating video, one small issue that I could not capture the temperature drop or increase smoothly as I wanted to.</p>
+        <p>This link is provided when the demo video isn't appear automatic below. <a href="https://youtu.be/EKQNpt_ofgo"> FanBot Demo</a></p>
       </div>
       <div class="content">
         <div>
           <figure>
-            <img src="FanBot_Operation.jpg" width="auto" height="300">
+            <video width="auto" height="300" controls>
+              <source src="FanBot_Operation.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
             <figcaption> Fig 23: A demo of how the robot is operating. Light changes, and LCD changes when senors is detecting signals which effect the motor's speed.</figcaption>
           </figure>
         </div>

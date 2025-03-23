@@ -73,6 +73,10 @@ pre {
   /* font-family: "Inter", sans-serif; */
 }
 
+video {
+  padding: 10pt;
+}
+
 #fontchange {
   padding-bottom: 1.5em;
 }
